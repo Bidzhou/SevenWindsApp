@@ -9,21 +9,45 @@
 /* Begin PBXBuildFile section */
 		009CFED32CDCD3C900715DA4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009CFED22CDCD3C900715DA4 /* AppDelegate.swift */; };
 		009CFED52CDCD3C900715DA4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009CFED42CDCD3C900715DA4 /* SceneDelegate.swift */; };
-		009CFED72CDCD3C900715DA4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009CFED62CDCD3C900715DA4 /* ViewController.swift */; };
-		009CFEDA2CDCD3C900715DA4 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 009CFED92CDCD3C900715DA4 /* Base */; };
+		009CFED72CDCD3C900715DA4 /* RegViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009CFED62CDCD3C900715DA4 /* RegViewController.swift */; };
 		009CFEDC2CDCD3CB00715DA4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 009CFEDB2CDCD3CB00715DA4 /* Assets.xcassets */; };
 		009CFEDF2CDCD3CB00715DA4 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 009CFEDE2CDCD3CB00715DA4 /* Base */; };
+		009CFEE72CDCE38200715DA4 /* AuthConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009CFEE62CDCE38200715DA4 /* AuthConfigurator.swift */; };
+		009CFEE92CDCE39500715DA4 /* AuthPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009CFEE82CDCE39500715DA4 /* AuthPresenter.swift */; };
+		009CFEEB2CDCE3C200715DA4 /* AuthInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009CFEEA2CDCE3C200715DA4 /* AuthInteractor.swift */; };
+		009CFEEF2CDCE4D300715DA4 /* AuthRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009CFEEE2CDCE4D300715DA4 /* AuthRouter.swift */; };
+		009CFEF22CDD2DF500715DA4 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009CFEF12CDD2DF500715DA4 /* UIColor.swift */; };
+		009CFEF42CDDF8C300715DA4 /* CGColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009CFEF32CDDF8C300715DA4 /* CGColor.swift */; };
+		009CFEF72CDDFA1C00715DA4 /* RegConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009CFEF62CDDFA1C00715DA4 /* RegConfigurator.swift */; };
+		009CFEF92CDDFA5800715DA4 /* RegPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009CFEF82CDDFA5800715DA4 /* RegPresenter.swift */; };
+		009CFEFB2CDE024600715DA4 /* RegInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009CFEFA2CDE024600715DA4 /* RegInteractor.swift */; };
+		009CFEFD2CDE025000715DA4 /* RegRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009CFEFC2CDE025000715DA4 /* RegRouter.swift */; };
+		009CFEFF2CDE2F6D00715DA4 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009CFEFE2CDE2F6D00715DA4 /* AuthViewController.swift */; };
+		009CFF012CDE5C7B00715DA4 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009CFF002CDE5C7B00715DA4 /* NetworkService.swift */; };
+		009CFF042CDE5D3900715DA4 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 009CFF032CDE5D3900715DA4 /* Alamofire */; };
+		009CFF062CDE5D3900715DA4 /* AlamofireDynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 009CFF052CDE5D3900715DA4 /* AlamofireDynamic */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		009CFECF2CDCD3C900715DA4 /* SevenWindsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SevenWindsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		009CFED22CDCD3C900715DA4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		009CFED42CDCD3C900715DA4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		009CFED62CDCD3C900715DA4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		009CFED92CDCD3C900715DA4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		009CFED62CDCD3C900715DA4 /* RegViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegViewController.swift; sourceTree = "<group>"; };
 		009CFEDB2CDCD3CB00715DA4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		009CFEDE2CDCD3CB00715DA4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		009CFEE02CDCD3CB00715DA4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		009CFEE62CDCE38200715DA4 /* AuthConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthConfigurator.swift; sourceTree = "<group>"; };
+		009CFEE82CDCE39500715DA4 /* AuthPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthPresenter.swift; sourceTree = "<group>"; };
+		009CFEEA2CDCE3C200715DA4 /* AuthInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthInteractor.swift; sourceTree = "<group>"; };
+		009CFEEE2CDCE4D300715DA4 /* AuthRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRouter.swift; sourceTree = "<group>"; };
+		009CFEF12CDD2DF500715DA4 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
+		009CFEF32CDDF8C300715DA4 /* CGColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGColor.swift; sourceTree = "<group>"; };
+		009CFEF62CDDFA1C00715DA4 /* RegConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegConfigurator.swift; sourceTree = "<group>"; };
+		009CFEF82CDDFA5800715DA4 /* RegPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegPresenter.swift; sourceTree = "<group>"; };
+		009CFEFA2CDE024600715DA4 /* RegInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegInteractor.swift; sourceTree = "<group>"; };
+		009CFEFC2CDE025000715DA4 /* RegRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegRouter.swift; sourceTree = "<group>"; };
+		009CFEFE2CDE2F6D00715DA4 /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
+		009CFF002CDE5C7B00715DA4 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +55,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				009CFF042CDE5D3900715DA4 /* Alamofire in Frameworks */,
+				009CFF062CDE5D3900715DA4 /* AlamofireDynamic in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -58,13 +84,56 @@
 			children = (
 				009CFED22CDCD3C900715DA4 /* AppDelegate.swift */,
 				009CFED42CDCD3C900715DA4 /* SceneDelegate.swift */,
-				009CFED62CDCD3C900715DA4 /* ViewController.swift */,
-				009CFED82CDCD3C900715DA4 /* Main.storyboard */,
+				009CFEF02CDD2DE400715DA4 /* Extensions */,
+				009CFEED2CDCE4B100715DA4 /* Services */,
+				009CFEEC2CDCE3CC00715DA4 /* Authentification */,
 				009CFEDB2CDCD3CB00715DA4 /* Assets.xcassets */,
 				009CFEDD2CDCD3CB00715DA4 /* LaunchScreen.storyboard */,
 				009CFEE02CDCD3CB00715DA4 /* Info.plist */,
 			);
 			path = SevenWindsApp;
+			sourceTree = "<group>";
+		};
+		009CFEEC2CDCE3CC00715DA4 /* Authentification */ = {
+			isa = PBXGroup;
+			children = (
+				009CFEF52CDDFA0600715DA4 /* Registration */,
+				009CFEE62CDCE38200715DA4 /* AuthConfigurator.swift */,
+				009CFEE82CDCE39500715DA4 /* AuthPresenter.swift */,
+				009CFEEA2CDCE3C200715DA4 /* AuthInteractor.swift */,
+				009CFEEE2CDCE4D300715DA4 /* AuthRouter.swift */,
+				009CFEFE2CDE2F6D00715DA4 /* AuthViewController.swift */,
+			);
+			path = Authentification;
+			sourceTree = "<group>";
+		};
+		009CFEED2CDCE4B100715DA4 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				009CFF002CDE5C7B00715DA4 /* NetworkService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		009CFEF02CDD2DE400715DA4 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				009CFEF12CDD2DF500715DA4 /* UIColor.swift */,
+				009CFEF32CDDF8C300715DA4 /* CGColor.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		009CFEF52CDDFA0600715DA4 /* Registration */ = {
+			isa = PBXGroup;
+			children = (
+				009CFED62CDCD3C900715DA4 /* RegViewController.swift */,
+				009CFEF62CDDFA1C00715DA4 /* RegConfigurator.swift */,
+				009CFEF82CDDFA5800715DA4 /* RegPresenter.swift */,
+				009CFEFA2CDE024600715DA4 /* RegInteractor.swift */,
+				009CFEFC2CDE025000715DA4 /* RegRouter.swift */,
+			);
+			path = Registration;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -83,6 +152,10 @@
 			dependencies = (
 			);
 			name = SevenWindsApp;
+			packageProductDependencies = (
+				009CFF032CDE5D3900715DA4 /* Alamofire */,
+				009CFF052CDE5D3900715DA4 /* AlamofireDynamic */,
+			);
 			productName = SevenWindsApp;
 			productReference = 009CFECF2CDCD3C900715DA4 /* SevenWindsApp.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +184,9 @@
 				Base,
 			);
 			mainGroup = 009CFEC62CDCD3C900715DA4;
+			packageReferences = (
+				009CFF022CDE5D3900715DA4 /* XCRemoteSwiftPackageReference "Alamofire" */,
+			);
 			productRefGroup = 009CFED02CDCD3C900715DA4 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -127,7 +203,6 @@
 			files = (
 				009CFEDC2CDCD3CB00715DA4 /* Assets.xcassets in Resources */,
 				009CFEDF2CDCD3CB00715DA4 /* Base in Resources */,
-				009CFEDA2CDCD3C900715DA4 /* Base in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,23 +213,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				009CFED72CDCD3C900715DA4 /* ViewController.swift in Sources */,
+				009CFEFD2CDE025000715DA4 /* RegRouter.swift in Sources */,
+				009CFEEF2CDCE4D300715DA4 /* AuthRouter.swift in Sources */,
+				009CFEF92CDDFA5800715DA4 /* RegPresenter.swift in Sources */,
+				009CFEE92CDCE39500715DA4 /* AuthPresenter.swift in Sources */,
+				009CFEFF2CDE2F6D00715DA4 /* AuthViewController.swift in Sources */,
+				009CFED72CDCD3C900715DA4 /* RegViewController.swift in Sources */,
+				009CFEF72CDDFA1C00715DA4 /* RegConfigurator.swift in Sources */,
+				009CFEF42CDDF8C300715DA4 /* CGColor.swift in Sources */,
+				009CFEEB2CDCE3C200715DA4 /* AuthInteractor.swift in Sources */,
 				009CFED32CDCD3C900715DA4 /* AppDelegate.swift in Sources */,
+				009CFF012CDE5C7B00715DA4 /* NetworkService.swift in Sources */,
+				009CFEF22CDD2DF500715DA4 /* UIColor.swift in Sources */,
+				009CFEE72CDCE38200715DA4 /* AuthConfigurator.swift in Sources */,
 				009CFED52CDCD3C900715DA4 /* SceneDelegate.swift in Sources */,
+				009CFEFB2CDE024600715DA4 /* RegInteractor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		009CFED82CDCD3C900715DA4 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				009CFED92CDCD3C900715DA4 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		009CFEDD2CDCD3CB00715DA4 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -297,7 +376,6 @@
 				INFOPLIST_FILE = SevenWindsApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -325,7 +403,6 @@
 				INFOPLIST_FILE = SevenWindsApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -363,6 +440,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		009CFF022CDE5D3900715DA4 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.10.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		009CFF032CDE5D3900715DA4 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 009CFF022CDE5D3900715DA4 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		009CFF052CDE5D3900715DA4 /* AlamofireDynamic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 009CFF022CDE5D3900715DA4 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = AlamofireDynamic;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 009CFEC72CDCD3C900715DA4 /* Project object */;
 }
