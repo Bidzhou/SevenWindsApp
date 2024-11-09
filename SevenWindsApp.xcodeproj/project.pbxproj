@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		007F70D92CDEACD0006416C5 /* URLRespones.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007F70D82CDEACD0006416C5 /* URLRespones.swift */; };
 		009CFED32CDCD3C900715DA4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009CFED22CDCD3C900715DA4 /* AppDelegate.swift */; };
 		009CFED52CDCD3C900715DA4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009CFED42CDCD3C900715DA4 /* SceneDelegate.swift */; };
 		009CFED72CDCD3C900715DA4 /* RegViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009CFED62CDCD3C900715DA4 /* RegViewController.swift */; };
@@ -29,6 +30,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		007F70D82CDEACD0006416C5 /* URLRespones.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLRespones.swift; sourceTree = "<group>"; };
 		009CFECF2CDCD3C900715DA4 /* SevenWindsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SevenWindsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		009CFED22CDCD3C900715DA4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		009CFED42CDCD3C900715DA4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -63,6 +65,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		007F70D72CDEAC55006416C5 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				007F70D82CDEACD0006416C5 /* URLRespones.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		009CFEC62CDCD3C900715DA4 = {
 			isa = PBXGroup;
 			children = (
@@ -84,6 +94,7 @@
 			children = (
 				009CFED22CDCD3C900715DA4 /* AppDelegate.swift */,
 				009CFED42CDCD3C900715DA4 /* SceneDelegate.swift */,
+				007F70D72CDEAC55006416C5 /* Models */,
 				009CFEF02CDD2DE400715DA4 /* Extensions */,
 				009CFEED2CDCE4B100715DA4 /* Services */,
 				009CFEEC2CDCE3CC00715DA4 /* Authentification */,
@@ -128,10 +139,10 @@
 			isa = PBXGroup;
 			children = (
 				009CFED62CDCD3C900715DA4 /* RegViewController.swift */,
-				009CFEF62CDDFA1C00715DA4 /* RegConfigurator.swift */,
 				009CFEF82CDDFA5800715DA4 /* RegPresenter.swift */,
 				009CFEFA2CDE024600715DA4 /* RegInteractor.swift */,
 				009CFEFC2CDE025000715DA4 /* RegRouter.swift */,
+				009CFEF62CDDFA1C00715DA4 /* RegConfigurator.swift */,
 			);
 			path = Registration;
 			sourceTree = "<group>";
@@ -227,6 +238,7 @@
 				009CFEF22CDD2DF500715DA4 /* UIColor.swift in Sources */,
 				009CFEE72CDCE38200715DA4 /* AuthConfigurator.swift in Sources */,
 				009CFED52CDCD3C900715DA4 /* SceneDelegate.swift in Sources */,
+				007F70D92CDEACD0006416C5 /* URLRespones.swift in Sources */,
 				009CFEFB2CDE024600715DA4 /* RegInteractor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

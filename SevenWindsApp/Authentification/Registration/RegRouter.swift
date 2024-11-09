@@ -14,16 +14,17 @@ protocol RegRouterProtocol: AnyObject {
 
 class RegRouter: RegRouterProtocol {
     
-    weak var currentViewController: UIViewController!
-    let authViewController: UIViewController
+    weak var currentViewController: RegViewProtocol!
+
     
-    init(currentViewController: UIViewController, authViewController: UIViewController) {
+    init(currentViewController: RegViewProtocol) {
         self.currentViewController = currentViewController
-        self.authViewController = authViewController
+        
     }
     
     func goToAuthScreen() {
-        currentViewController.navigationController?.pushViewController(authViewController, animated: true)
+        guard let viewController = currentViewController as? UIViewController else {return}
+        viewController.navigationController?.pushViewController(AuthViewController(), animated: true)
     }
     
     

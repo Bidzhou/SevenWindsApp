@@ -8,11 +8,6 @@
 import Foundation
 import UIKit
 
-protocol RegViewProtocol: AnyObject {
-    func success()
-    func failure()
-   
-}
 
 protocol RegPresenterProtocol: AnyObject {
     
@@ -29,17 +24,22 @@ class RegPresenter: RegPresenterProtocol {
         guard !email.isEmpty, !pass.isEmpty, !rePass.isEmpty else {return}
         
         if interactor.checkValidation(pass: pass, rePass: rePass){
-            view.success()
-            
+            interactor.networkService.registration(with: email, and: pass) { [weak self] registrationResponse in
+                switch registrationResponse {
+                case .success(let data):
+                    print("Регистрация прошла успешно \n \(data)")
+                    self?.router.goToAuthScreen()
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+            }
         } else {
-            view.failure()
+            print("not valid")
         }
-        router.goToAuthScreen()
+        
         
     }
-    
 
-    
     init(view: RegViewProtocol!) {
         self.view = view
     }

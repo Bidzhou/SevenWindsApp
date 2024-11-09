@@ -7,6 +7,12 @@
 
 import UIKit
 
+protocol RegViewProtocol: AnyObject {
+    func createObservers()
+    func regButtonTouched()
+}
+
+
 class RegViewController: UIViewController {
     
     var presenter: RegPresenterProtocol!
@@ -145,21 +151,8 @@ class RegViewController: UIViewController {
     }
     
     //MARK: - Methods
-    @objc func regButtonTouched(){
-        
-        presenter.regButtonClicked(email: emailTextField.text ?? "", pass: passTextField.text ?? "" , rePass: rePassTextField.text ?? "")
-        //navigationController?.pushViewController(ViewController(), animated: true)
-    }
+
     
-    private func createObservers() {
-        NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillShowNotification, object: nil, queue: nil) { nc in
-            self.view.frame.origin.y = -120
-        }
-        
-        NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillHideNotification, object: nil, queue: nil) { nc in
-            self.view.frame.origin.y = 0
-        }
-    }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.rePassTextField.resignFirstResponder()
         self.passTextField.resignFirstResponder()
@@ -175,9 +168,7 @@ class RegViewController: UIViewController {
         view.addSubview(rePassTextField)
         view.addSubview(rePassLabel)
         view.addSubview(regButton)
-          
-
-        
+  
         
     }
     
@@ -266,15 +257,24 @@ extension RegViewController: UITextFieldDelegate {
     }
 }
 
+//MARK: - RegViewProtocol
 extension RegViewController: RegViewProtocol {
        
-    
-    func success() {
-        print("valid")
+    func createObservers() {
+        NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillShowNotification, object: nil, queue: nil) { nc in
+            self.view.frame.origin.y = -120
+        }
+        
+        NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillHideNotification, object: nil, queue: nil) { nc in
+            self.view.frame.origin.y = 0
+        }
     }
+
     
-    func failure() {
-        print("not valid")
+    @objc func regButtonTouched(){
+        
+        presenter.regButtonClicked(email: emailTextField.text ?? "", pass: passTextField.text ?? "" , rePass: rePassTextField.text ?? "")
+        //navigationController?.pushViewController(ViewController(), animated: true)
     }
     
     

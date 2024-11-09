@@ -17,7 +17,7 @@ class RegConfigurator: RegConfiguratorProtocol {
     func configure(with viewController:  RegViewController) {
         let presenter = RegPresenter(view: viewController)
         let interactor = RegInteractor(presenter: presenter)
-        let router = RegRouter(currentViewController: viewController, authViewController: AuthViewController())
+        let router = RegRouter(currentViewController: viewController)
         
         viewController.presenter = presenter
         presenter.interactor = interactor
