@@ -7,20 +7,28 @@
 
 import UIKit
 
+protocol AuthViewProtocol: AnyObject {
+    func createObservers()
+    func authButtonTouched()
+}
+
 class AuthViewController: UIViewController {
+    
+    var presenter: AuthPresenterProtocol!
+    let configurator = AuthConfigurator()
     
     //MARK: - Button
     private let loginButton: UIButton =  {
         let button = UIButton()
         button.setTitle("Войти", for: .normal)
-        button.titleLabel?.font = UIFont(name: "SFUIDisplay-Bold", size: 18)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize:18)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitleColor(UIColor.authTheme.buttonText, for: .normal)
         button.backgroundColor = UIColor.authTheme.buttonBackground
         button.layer.borderColor = CGColor.authTheme.buttonBorder
         button.layer.borderWidth = 1
         button.layer.cornerRadius = 24.5
-        //button.addTarget(self, action: #selector(regButtonTouched), for: .touchUpInside)
+        button.addTarget(self, action: #selector(authButtonTouched), for: .touchUpInside)
         return button
     }()
     
@@ -87,14 +95,19 @@ class AuthViewController: UIViewController {
         return textField
     }()
 
+    //MARK: - ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
+        configurator.configure(with: self)
+        
         emailTextField.delegate = self
         passTextField.delegate = self
         view.backgroundColor = .systemBackground
         setNavBar()
         displayViews()
+        createObservers()
         createConstraints()
+        
     }
 
     //MARK: - Methods
@@ -176,4 +189,24 @@ extension AuthViewController: UITextFieldDelegate {
         
         return true
     }
+}
+
+extension AuthViewController: AuthViewProtocol {
+    func createObservers() {
+        NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillShowNotification, object: nil, queue: nil) { nc in
+            self.view.frame.origin.y = -120
+        }
+        
+        NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillHideNotification, object: nil, queue: nil) { nc in
+            self.view.frame.origin.y = 0
+        }
+    }
+    
+    @objc func authButtonTouched() {
+        AuthRouter(view: self).jumpToCoffeShops()
+        guard let email = emailTextField.text, let pass = passTextField.text else {return}
+        presenter.enterButtonClicked(email: email, pass: pass)
+    }
+    
+    
 }

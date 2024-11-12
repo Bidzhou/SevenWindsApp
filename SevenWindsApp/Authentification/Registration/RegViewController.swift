@@ -49,7 +49,7 @@ class RegViewController: UIViewController {
     private let regButton: UIButton =  {
         let button = UIButton()
         button.setTitle("Регистрация", for: .normal)
-        button.titleLabel?.font = UIFont(name: "SFUIDisplay-Bold", size: 18)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize:18)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitleColor(UIColor.authTheme.buttonText, for: .normal)
         button.backgroundColor = UIColor.authTheme.buttonBackground
@@ -274,7 +274,7 @@ extension RegViewController: RegViewProtocol {
     @objc func regButtonTouched(){
         
         presenter.regButtonClicked(email: emailTextField.text ?? "", pass: passTextField.text ?? "" , rePass: rePassTextField.text ?? "")
-        //navigationController?.pushViewController(ViewController(), animated: true)
+
     }
     
     

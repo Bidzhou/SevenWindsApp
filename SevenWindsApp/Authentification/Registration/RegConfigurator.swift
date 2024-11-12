@@ -19,9 +19,10 @@ class RegConfigurator: RegConfiguratorProtocol {
         let interactor = RegInteractor(presenter: presenter)
         let router = RegRouter(currentViewController: viewController)
         
-        viewController.presenter = presenter
         presenter.interactor = interactor
         presenter.router = router
+        viewController.presenter = presenter
+        
     }
     
     

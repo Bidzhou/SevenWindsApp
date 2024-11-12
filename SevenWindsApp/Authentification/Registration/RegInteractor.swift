@@ -10,13 +10,13 @@ import Foundation
 
 protocol RegInteractorProtocol {
     func checkValidation(pass: String, rePass: String) -> Bool
-    var networkService: NetworkService { get }
+    var networkService: NetworkServiceProtocol {get}
 }
 
 class RegInteractor: RegInteractorProtocol {
-    
+    var networkService: any NetworkServiceProtocol = NetworkService()  
     weak var presenter: RegPresenterProtocol!
-    var networkService = NetworkService()
+
     
     required init(presenter: RegPresenterProtocol!) {
         self.presenter = presenter

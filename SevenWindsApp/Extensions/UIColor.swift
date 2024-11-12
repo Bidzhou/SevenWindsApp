@@ -10,6 +10,7 @@ import UIKit
 
 extension UIColor {
     static let authTheme = ThemeColors()
+    static let coffeShopsTheme = CoffeShopsThemeColors()
 }
 
 struct ThemeColors {
@@ -19,4 +20,10 @@ struct ThemeColors {
     let buttonText = UIColor(named: "buttonText")!
     let navBackground = UIColor(named: "navBarColor")!
     
+}
+
+struct CoffeShopsThemeColors {
+    let secondaryTextColor = UIColor(named: "authLightBrown")!
+    let coffeShopTextColor = UIColor(named: "authDarkBrown")!
+    let backgroundOfCoffeShop = UIColor(named: "bcCoffeShop")!
 }

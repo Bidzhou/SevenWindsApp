@@ -7,44 +7,25 @@
 
 import Foundation
 import Alamofire
+import UIKit
 
 
 /*
-{"login":"Example@example.ru","password":"Qwerty123"}
-"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJBdXRoZW50aWNhdGlvbiIsImlzcyI6ImNvZmZlZSBiYWNrZW5kIiwiaWQiOjE3NjMsImV4cCI6MTczMTEwMjA0NH0.btyUOBFp3xwNedH-d0qk91LdF3mJn9Daj1MIOWvkJAI","tokenLifetime":3600000
+{
+ "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJBdXRoZW50aWNhdGlvbiIsImlzcyI6ImNvZmZlZSBiYWNrZW5kIiwiaWQiOjE4MTMsImV4cCI6MTczMTMxNTYxOH0.Yup3QzqeeHQP6TqgV912esFQuPOyqe1CyTFC51NQ2Jc"
  */
 protocol NetworkServiceProtocol {
     func registration(with login: String, and pass: String, completion: @escaping (Result<AuthResponse, Error>) -> ())
+    func signIn(with login: String, and pass: String, completion: @escaping (Result<AuthResponse, Error>) -> ())
+    func getLocations(completion: @escaping (Result<[CoffeShop], Error>) -> ())
+    func getMenu(with id: Int, completion: @escaping (Result<[Position], any Error>) -> ())
+    func getImage(url: String, completion: @escaping (Result<UIImage, any Error>) -> ())
 }
 
 class NetworkService: NetworkServiceProtocol {
 
-    
- 
-    
-//    func regPostRequest(with login: String, and pass: String) {
-//        let headers: HTTPHeaders = [.accept("application/json"), .contentType("application/json")]
-//        let patametrs = ["login": login, "password": pass]
-//        
-//        AF.request(
-//            "http://147.78.66.203:3210/auth/register",
-//            method: .post,
-//            parameters: patametrs,
-//            encoding: JSONEncoding.default,
-//            headers: headers
-//        ).responseDecodable(of: AuthResponse.self) { response in
-//            switch response.result {
-//                
-//            case .success(let data):
-//                    print(data)
-//            case .failure(let error):
-//                print(error.localizedDescription)
-//            }
-//            debugPrint(response)
-//            
-//        }
-//    }
-    
+    let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJBdXRoZW50aWNhdGlvbiIsImlzcyI6ImNvZmZlZSBiYWNrZW5kIiwiaWQiOjE4MjIsImV4cCI6MTczMTM0MDgyNn0.HnCgesoh0UvnuWz4nxp_QBII2JypKc7jS0yj4EsgIrM"
+
     func registration(with login: String, and pass: String, completion: @escaping (Result<AuthResponse, any Error>) -> ()) {
         let headers: HTTPHeaders = [.accept("application/json"), .contentType("application/json")]
         let patametrs = ["login": login, "password": pass]
@@ -60,10 +41,72 @@ class NetworkService: NetworkServiceProtocol {
             switch response.result {
             case .success(let data):
                 completion(.success(data))
+                print(data.token)
             case .failure(let error):
                 completion(.failure(error))
             }
             
         }
     }
+
+ 
+    func signIn(with login: String, and pass: String, completion: @escaping (Result<AuthResponse, any Error>) -> ()) {
+        let headers: HTTPHeaders = [.accept("application/json"), .contentType("application/json")]
+        let parameters = ["login": login, "password": pass]
+        
+        AF.request("http://147.78.66.203:3210/auth/login", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseDecodable(of: AuthResponse.self) { response in
+            switch response.result {
+                
+            case .success(let data):
+                completion(.success(data))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    func getLocations(completion: @escaping (Result<[CoffeShop], any Error>) -> ()) {
+        let headers: HTTPHeaders = [.accept("application/json"), .authorization(bearerToken:  token)]
+       
+        AF.request("http://147.78.66.203:3210/locations",encoding: JSONEncoding.default, headers: headers).responseDecodable(of: [CoffeShop].self) { response in
+//            debugPrint(response)
+            switch response.result {
+            case .success(let coffeShops):
+                completion(.success(coffeShops))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    func getMenu(with id: Int, completion: @escaping (Result<[Position], any Error>) -> ()) {
+        let headers: HTTPHeaders = [.accept("application/json"), .authorization(bearerToken: token)]
+        AF.request("http://147.78.66.203:3210/location/\(id)/menu",encoding: JSONEncoding.default, headers: headers).responseDecodable(of: [Position].self) { response in
+            debugPrint(response)
+            switch response.result {
+            case .success(let positionArray):
+                completion(.success(positionArray))
+                
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    func getImage(url: String, completion: @escaping (Result<UIImage, any Error>) -> ()) {
+        AF.download(url).responseData { response in
+            switch response.result {
+            case .success(let imgData):
+                if let image = UIImage(data: imgData) {
+                    completion(.success(image))
+                } else {
+                    completion(.success(UIImage(named: "asap")!))
+                }
+                
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+
 }
