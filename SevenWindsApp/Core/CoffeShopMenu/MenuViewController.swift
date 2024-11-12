@@ -7,15 +7,15 @@
 
 import UIKit
 protocol MenuViewProtocol: AnyObject {
+    var shop: CoffeShop? {get set}
     func success()
 }
 
 
 class MenuViewController: UIViewController {
-    
     var presenter: MenuPresenterProtocol!
     let configurator =  MenuConfigurator()
-    
+    var shop: CoffeShop? = nil
     let menu: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: 165, height: 205)
@@ -23,6 +23,15 @@ class MenuViewController: UIViewController {
         collectionView.register(MenuCollectionViewCell.self, forCellWithReuseIdentifier: MenuCollectionViewCell.identifier)
         return collectionView
     }()
+
+    init(shop: CoffeShop) {
+        self.shop = shop
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,6 +74,9 @@ class MenuViewController: UIViewController {
 }
 
 extension MenuViewController: MenuViewProtocol {
+    
+    
+    
     func success() {
         menu.reloadData()
     }
@@ -81,18 +93,18 @@ extension MenuViewController: UICollectionViewDelegate, UICollectionViewDataSour
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MenuCollectionViewCell.identifier, for: indexPath) as? MenuCollectionViewCell else {return UICollectionViewCell()}
         let name = presenter.positions?[indexPath.row].name ?? ""
         let price = presenter.positions?[indexPath.row].price ?? 0
-        var image: UIImage = UIImage(named: "asap")!
-        
-        presenter.getImage(url: presenter.positions?[indexPath.row].imageURL ?? "", completion: {res in
-            switch res {
-            case .success(let img):
-                image = img
-            case .failure(let error):
-                print(error.localizedDescription)
+        let url = presenter.positions?[indexPath.row].imageURL ?? ""
+        presenter.getImage(url: url) { result in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let image):
+                    cell.configure(name: name, price: price, image: image)
+                case .failure(let error):
+                    print("error")
+                }
             }
-        })
-        
-        cell.configure(name: name, price: price, image: image)
+
+        }
         return cell
     }
     

@@ -26,7 +26,8 @@ class ShopsRouter: ShopsRouterProtocol {
     }
     
     func goToTheCoffeShop(_ shop: CoffeShop) {
-        print("goToTheCoffeShop")
+        guard let vc = view as? UIViewController else {return}
+        vc.navigationController?.pushViewController(MenuViewController(shop: shop), animated: true)
     }
     
     

@@ -24,7 +24,7 @@ class MenuPresenter: MenuPresenterProtocol {
     }
     
     func getPositions() {
-        interactor.networkService.getMenu(with: 1) {[weak self] result in
+        interactor.networkService.getMenu(with: view.shop?.id ?? 0) {[weak self] result in
             DispatchQueue.main.async { 
                 switch result {
                 case .success(let positionArray):
@@ -41,9 +41,9 @@ class MenuPresenter: MenuPresenterProtocol {
     func getImage(url: String, completion: @escaping (Result<UIImage, Error>) -> ()) {
         interactor.networkService.getImage(url: url) { result in
             switch result {
+            case .success(let image):
+                completion(.success(image))
                 
-            case .success(let img):
-                completion(.success(img))
             case .failure(let error):
                 completion(.failure(error))
             }

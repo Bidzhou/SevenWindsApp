@@ -20,11 +20,14 @@ protocol NetworkServiceProtocol {
     func getLocations(completion: @escaping (Result<[CoffeShop], Error>) -> ())
     func getMenu(with id: Int, completion: @escaping (Result<[Position], any Error>) -> ())
     func getImage(url: String, completion: @escaping (Result<UIImage, any Error>) -> ())
+    
 }
 
 class NetworkService: NetworkServiceProtocol {
+    
+    
 
-    let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJBdXRoZW50aWNhdGlvbiIsImlzcyI6ImNvZmZlZSBiYWNrZW5kIiwiaWQiOjE4MjIsImV4cCI6MTczMTM0MDgyNn0.HnCgesoh0UvnuWz4nxp_QBII2JypKc7jS0yj4EsgIrM"
+    let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJBdXRoZW50aWNhdGlvbiIsImlzcyI6ImNvZmZlZSBiYWNrZW5kIiwiaWQiOjE4MzEsImV4cCI6MTczMTQxNjM0N30.RfKU_c7ZQJq9WNV7i-NDBgszHP5-BGHG0R-RtT1AH-U"
 
     func registration(with login: String, and pass: String, completion: @escaping (Result<AuthResponse, any Error>) -> ()) {
         let headers: HTTPHeaders = [.accept("application/json"), .contentType("application/json")]
@@ -100,13 +103,15 @@ class NetworkService: NetworkServiceProtocol {
                 if let image = UIImage(data: imgData) {
                     completion(.success(image))
                 } else {
-                    completion(.success(UIImage(named: "asap")!))
+                    completion(.success(UIImage(systemName: "circle")!))
                 }
                 
             case .failure(let error):
                 completion(.failure(error))
             }
         }
+        
+        
     }
 
 }

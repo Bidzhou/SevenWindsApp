@@ -19,7 +19,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
-        let nav = UINavigationController(rootViewController: MenuViewController())
+        let nav = UINavigationController(rootViewController: ShopsViewController())
         window?.backgroundColor = .systemBackground
         window?.rootViewController = nav
         window?.makeKeyAndVisible()

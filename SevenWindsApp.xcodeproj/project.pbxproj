@@ -24,6 +24,7 @@
 		007F71012CE23A41006416C5 /* MenuInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007F71002CE23A41006416C5 /* MenuInteractor.swift */; };
 		007F71032CE23A4B006416C5 /* MenuConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007F71022CE23A4B006416C5 /* MenuConfigurator.swift */; };
 		007F71052CE23A53006416C5 /* MenuRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007F71042CE23A53006416C5 /* MenuRouter.swift */; };
+		007F71082CE36931006416C5 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007F71072CE36930006416C5 /* TestViewController.swift */; };
 		009CFED32CDCD3C900715DA4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009CFED22CDCD3C900715DA4 /* AppDelegate.swift */; };
 		009CFED52CDCD3C900715DA4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009CFED42CDCD3C900715DA4 /* SceneDelegate.swift */; };
 		009CFED72CDCD3C900715DA4 /* RegViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009CFED62CDCD3C900715DA4 /* RegViewController.swift */; };
@@ -59,6 +60,7 @@
 		007F71002CE23A41006416C5 /* MenuInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuInteractor.swift; sourceTree = "<group>"; };
 		007F71022CE23A4B006416C5 /* MenuConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuConfigurator.swift; sourceTree = "<group>"; };
 		007F71042CE23A53006416C5 /* MenuRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuRouter.swift; sourceTree = "<group>"; };
+		007F71072CE36930006416C5 /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		009CFECF2CDCD3C900715DA4 /* SevenWindsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SevenWindsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		009CFED22CDCD3C900715DA4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		009CFED42CDCD3C900715DA4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -179,6 +181,7 @@
 			children = (
 				009CFED22CDCD3C900715DA4 /* AppDelegate.swift */,
 				009CFED42CDCD3C900715DA4 /* SceneDelegate.swift */,
+				007F71072CE36930006416C5 /* TestViewController.swift */,
 				009CFEED2CDCE4B100715DA4 /* Services */,
 				007F70DD2CDF5AF2006416C5 /* Core */,
 				007F70D72CDEAC55006416C5 /* Models */,
@@ -329,6 +332,7 @@
 				007F70F82CE1F365006416C5 /* MenuCollectionViewCell.swift in Sources */,
 				009CFF012CDE5C7B00715DA4 /* NetworkService.swift in Sources */,
 				007F70E22CDF5F24006416C5 /* ShopsPresenter.swift in Sources */,
+				007F71082CE36931006416C5 /* TestViewController.swift in Sources */,
 				007F71052CE23A53006416C5 /* MenuRouter.swift in Sources */,
 				009CFEF22CDD2DF500715DA4 /* UIColor.swift in Sources */,
 				009CFEE72CDCE38200715DA4 /* AuthConfigurator.swift in Sources */,

@@ -10,7 +10,7 @@ import UIKit
 class MenuCollectionViewCell: UICollectionViewCell {
     static let identifier = "MenuCollectionViewCell"
     
-    private let positionPhoto: UIImageView = {
+    private var positionPhoto: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFill
