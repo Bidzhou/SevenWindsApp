@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		000204472CE4FF1200AE6E18 /* OrderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000204462CE4FF1200AE6E18 /* OrderCollectionViewCell.swift */; };
 		007F70D92CDEACD0006416C5 /* URLRespones.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007F70D82CDEACD0006416C5 /* URLRespones.swift */; };
 		007F70E02CDF5F0A006416C5 /* ShopsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007F70DF2CDF5F0A006416C5 /* ShopsConfigurator.swift */; };
 		007F70E22CDF5F24006416C5 /* ShopsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007F70E12CDF5F24006416C5 /* ShopsPresenter.swift */; };
@@ -24,7 +25,8 @@
 		007F71012CE23A41006416C5 /* MenuInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007F71002CE23A41006416C5 /* MenuInteractor.swift */; };
 		007F71032CE23A4B006416C5 /* MenuConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007F71022CE23A4B006416C5 /* MenuConfigurator.swift */; };
 		007F71052CE23A53006416C5 /* MenuRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007F71042CE23A53006416C5 /* MenuRouter.swift */; };
-		007F71082CE36931006416C5 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007F71072CE36930006416C5 /* TestViewController.swift */; };
+		007F71082CE36931006416C5 /* OrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007F71072CE36930006416C5 /* OrderViewController.swift */; };
+		007F710B2CE39908006416C5 /* AlamofireImage in Frameworks */ = {isa = PBXBuildFile; productRef = 007F710A2CE39908006416C5 /* AlamofireImage */; };
 		009CFED32CDCD3C900715DA4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009CFED22CDCD3C900715DA4 /* AppDelegate.swift */; };
 		009CFED52CDCD3C900715DA4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009CFED42CDCD3C900715DA4 /* SceneDelegate.swift */; };
 		009CFED72CDCD3C900715DA4 /* RegViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009CFED62CDCD3C900715DA4 /* RegViewController.swift */; };
@@ -45,6 +47,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		000204462CE4FF1200AE6E18 /* OrderCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderCollectionViewCell.swift; sourceTree = "<group>"; };
 		007F70D82CDEACD0006416C5 /* URLRespones.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLRespones.swift; sourceTree = "<group>"; };
 		007F70DF2CDF5F0A006416C5 /* ShopsConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopsConfigurator.swift; sourceTree = "<group>"; };
 		007F70E12CDF5F24006416C5 /* ShopsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopsPresenter.swift; sourceTree = "<group>"; };
@@ -60,7 +63,7 @@
 		007F71002CE23A41006416C5 /* MenuInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuInteractor.swift; sourceTree = "<group>"; };
 		007F71022CE23A4B006416C5 /* MenuConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuConfigurator.swift; sourceTree = "<group>"; };
 		007F71042CE23A53006416C5 /* MenuRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuRouter.swift; sourceTree = "<group>"; };
-		007F71072CE36930006416C5 /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
+		007F71072CE36930006416C5 /* OrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewController.swift; sourceTree = "<group>"; };
 		009CFECF2CDCD3C900715DA4 /* SevenWindsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SevenWindsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		009CFED22CDCD3C900715DA4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		009CFED42CDCD3C900715DA4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -89,12 +92,22 @@
 			files = (
 				007F70FB2CE21F55006416C5 /* Alamofire in Frameworks */,
 				007F70FD2CE21F55006416C5 /* AlamofireDynamic in Frameworks */,
+				007F710B2CE39908006416C5 /* AlamofireImage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		000204482CE4FF2100AE6E18 /* Order */ = {
+			isa = PBXGroup;
+			children = (
+				007F71072CE36930006416C5 /* OrderViewController.swift */,
+				000204462CE4FF1200AE6E18 /* OrderCollectionViewCell.swift */,
+			);
+			path = Order;
+			sourceTree = "<group>";
+		};
 		007F70D72CDEAC55006416C5 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -120,6 +133,7 @@
 		007F70DD2CDF5AF2006416C5 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				000204482CE4FF2100AE6E18 /* Order */,
 				007F70F22CE0871F006416C5 /* CoffeShopMenu */,
 				007F70DE2CDF5AF9006416C5 /* CoffeShops */,
 			);
@@ -181,7 +195,6 @@
 			children = (
 				009CFED22CDCD3C900715DA4 /* AppDelegate.swift */,
 				009CFED42CDCD3C900715DA4 /* SceneDelegate.swift */,
-				007F71072CE36930006416C5 /* TestViewController.swift */,
 				009CFEED2CDCE4B100715DA4 /* Services */,
 				007F70DD2CDF5AF2006416C5 /* Core */,
 				007F70D72CDEAC55006416C5 /* Models */,
@@ -251,6 +264,7 @@
 			packageProductDependencies = (
 				007F70FA2CE21F55006416C5 /* Alamofire */,
 				007F70FC2CE21F55006416C5 /* AlamofireDynamic */,
+				007F710A2CE39908006416C5 /* AlamofireImage */,
 			);
 			productName = SevenWindsApp;
 			productReference = 009CFECF2CDCD3C900715DA4 /* SevenWindsApp.app */;
@@ -282,6 +296,7 @@
 			mainGroup = 009CFEC62CDCD3C900715DA4;
 			packageReferences = (
 				007F70F92CE21F55006416C5 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				007F71092CE39908006416C5 /* XCRemoteSwiftPackageReference "AlamofireImage" */,
 			);
 			productRefGroup = 009CFED02CDCD3C900715DA4 /* Products */;
 			projectDirPath = "";
@@ -332,10 +347,11 @@
 				007F70F82CE1F365006416C5 /* MenuCollectionViewCell.swift in Sources */,
 				009CFF012CDE5C7B00715DA4 /* NetworkService.swift in Sources */,
 				007F70E22CDF5F24006416C5 /* ShopsPresenter.swift in Sources */,
-				007F71082CE36931006416C5 /* TestViewController.swift in Sources */,
+				007F71082CE36931006416C5 /* OrderViewController.swift in Sources */,
 				007F71052CE23A53006416C5 /* MenuRouter.swift in Sources */,
 				009CFEF22CDD2DF500715DA4 /* UIColor.swift in Sources */,
 				009CFEE72CDCE38200715DA4 /* AuthConfigurator.swift in Sources */,
+				000204472CE4FF1200AE6E18 /* OrderCollectionViewCell.swift in Sources */,
 				009CFED52CDCD3C900715DA4 /* SceneDelegate.swift in Sources */,
 				007F70EF2CE0509F006416C5 /* ShopsCollectionViewCell.swift in Sources */,
 				007F70D92CDEACD0006416C5 /* URLRespones.swift in Sources */,
@@ -562,6 +578,14 @@
 				version = 5.10.1;
 			};
 		};
+		007F71092CE39908006416C5 /* XCRemoteSwiftPackageReference "AlamofireImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/AlamofireImage";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.3.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -574,6 +598,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 007F70F92CE21F55006416C5 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = AlamofireDynamic;
+		};
+		007F710A2CE39908006416C5 /* AlamofireImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 007F71092CE39908006416C5 /* XCRemoteSwiftPackageReference "AlamofireImage" */;
+			productName = AlamofireImage;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

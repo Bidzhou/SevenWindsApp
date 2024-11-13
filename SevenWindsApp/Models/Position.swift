@@ -13,4 +13,5 @@ struct Position: Codable {
     let name: String
     let imageURL: String
     let price: Int
+    var count: Int? = 0
 }

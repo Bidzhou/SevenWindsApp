@@ -14,16 +14,16 @@ extension UIColor {
 }
 
 struct ThemeColors {
-    let textFieldText = UIColor(named: "authLightBrown")!
-    let labelText = UIColor(named: "authDarkBrown")!
-    let buttonBackground = UIColor(named: "buttonBackground")!
-    let buttonText = UIColor(named: "buttonText")!
+    let textFieldText = UIColor(named: "authLightBrown")! //#AF9479
+    let labelText = UIColor(named: "authDarkBrown")! //#846340
+    let buttonBackground = UIColor(named: "buttonBackground")! //#342D1A
+    let buttonText = UIColor(named: "buttonText")! //#F6E5D1
     let navBackground = UIColor(named: "navBarColor")!
     
 }
 
 struct CoffeShopsThemeColors {
-    let secondaryTextColor = UIColor(named: "authLightBrown")!
-    let coffeShopTextColor = UIColor(named: "authDarkBrown")!
-    let backgroundOfCoffeShop = UIColor(named: "bcCoffeShop")!
+    let secondaryTextColor = UIColor(named: "authLightBrown")! //#AF9479
+    let coffeShopTextColor = UIColor(named: "authDarkBrown")! // #846340
+    let backgroundOfCoffeShop = UIColor(named: "bcCoffeShop")! // #F6E5D1
 }

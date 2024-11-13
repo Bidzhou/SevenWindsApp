@@ -45,12 +45,12 @@ class ShopsPresenter: ShopsPresenterProtocol {
     }
     
     func goToTheCoffeShop(_ shop: CoffeShop) {
-        print(shop.id, shop.name)
+        
         router.goToTheCoffeShop(shop)
     }
     
     func showOnMaps() {
-        print()
+        print("maps")
     }
     
     func goBack() {

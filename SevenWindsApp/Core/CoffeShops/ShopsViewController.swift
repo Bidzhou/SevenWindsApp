@@ -59,8 +59,8 @@ class ShopsViewController: UIViewController {
         super.viewDidLayoutSubviews()
         coffeShops.layoutIfNeeded()
         
-        coffeShops.frame = CGRect(origin: CGPoint(x: 0, y: view.safeAreaInsets.top + 20), size: CGSize(width: view.bounds.width, height: view.bounds.height - 220))
-        
+//        coffeShops.frame = CGRect(origin: CGPoint(x: 0, y: view.safeAreaInsets.top + 20), size: CGSize(width: view.bounds.width, height: view.bounds.height - 220))
+        coffeShops.frame = view.bounds
         
         
     }
@@ -158,7 +158,7 @@ extension ShopsViewController: UICollectionViewDelegate, UICollectionViewDataSou
 extension ShopsViewController: UICollectionViewDelegateFlowLayout {
     //отступы
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+        return UIEdgeInsets(top: 20, left: 10, bottom: 0, right: 10)
     }
     
     //длина и ширина

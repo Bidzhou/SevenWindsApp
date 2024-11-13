@@ -8,7 +8,11 @@
 import Foundation
 import Alamofire
 import UIKit
+import AlamofireImage
 
+enum ErrorCasses: Error {
+    case DownloadingImageError
+}
 
 /*
 {
@@ -20,15 +24,14 @@ protocol NetworkServiceProtocol {
     func getLocations(completion: @escaping (Result<[CoffeShop], Error>) -> ())
     func getMenu(with id: Int, completion: @escaping (Result<[Position], any Error>) -> ())
     func getImage(url: String, completion: @escaping (Result<UIImage, any Error>) -> ())
-    
 }
 
 class NetworkService: NetworkServiceProtocol {
     
     
 
-    let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJBdXRoZW50aWNhdGlvbiIsImlzcyI6ImNvZmZlZSBiYWNrZW5kIiwiaWQiOjE4MzEsImV4cCI6MTczMTQxNjM0N30.RfKU_c7ZQJq9WNV7i-NDBgszHP5-BGHG0R-RtT1AH-U"
-
+    let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJBdXRoZW50aWNhdGlvbiIsImlzcyI6ImNvZmZlZSBiYWNrZW5kIiwiaWQiOjE4NTMsImV4cCI6MTczMTUxMjc3Mn0._Csy11wUNjtL1WU5gz2lJt0C32HG6hO2HbldpnRT2uk"
+    
     func registration(with login: String, and pass: String, completion: @escaping (Result<AuthResponse, any Error>) -> ()) {
         let headers: HTTPHeaders = [.accept("application/json"), .contentType("application/json")]
         let patametrs = ["login": login, "password": pass]
@@ -85,7 +88,7 @@ class NetworkService: NetworkServiceProtocol {
     func getMenu(with id: Int, completion: @escaping (Result<[Position], any Error>) -> ()) {
         let headers: HTTPHeaders = [.accept("application/json"), .authorization(bearerToken: token)]
         AF.request("http://147.78.66.203:3210/location/\(id)/menu",encoding: JSONEncoding.default, headers: headers).responseDecodable(of: [Position].self) { response in
-            debugPrint(response)
+//            debugPrint(response)
             switch response.result {
             case .success(let positionArray):
                 completion(.success(positionArray))
@@ -96,22 +99,24 @@ class NetworkService: NetworkServiceProtocol {
         }
     }
     
+
     func getImage(url: String, completion: @escaping (Result<UIImage, any Error>) -> ()) {
-        AF.download(url).responseData { response in
-            switch response.result {
-            case .success(let imgData):
-                if let image = UIImage(data: imgData) {
-                    completion(.success(image))
-                } else {
-                    completion(.success(UIImage(systemName: "circle")!))
-                }
-                
-            case .failure(let error):
-                completion(.failure(error))
+        guard let url = URL(string: url) else {return}
+        let session = URLSession.shared.dataTask(with: url) { data, _, error in
+            guard let data = data, let image = UIImage(data: data) else {
+                completion(.failure(ErrorCasses.DownloadingImageError))
+                return
+            }
+            DispatchQueue.main.async {
+                completion(.success(image))
             }
         }
-        
-        
+        session.resume()
     }
+
+        
+
+        
+    
 
 }

@@ -17,7 +17,6 @@ class MenuConfigurator: MenuConfiguratorProtocol{
         
         presenter.interactor = interactor
         presenter.getPositions()
-        
         viewController.presenter = presenter
     }
     
