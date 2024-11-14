@@ -135,7 +135,24 @@ extension OrderViewController: UICollectionViewDelegate, UICollectionViewDataSou
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: OrderCollectionViewCell.identifier, for: indexPath) as? OrderCollectionViewCell else {return UICollectionViewCell()}
         let name = presenter.order?[indexPath.row].name ?? "s"
         let count = presenter.order?[indexPath.row].count ?? 123222
-        cell.cofigure(name: name, count: count)
+        let price = presenter.order?[indexPath.row].price ?? 0
+        
+        cell.onMinusButtonTapped = { [weak self] in
+            guard self?.presenter.order?[indexPath.row].count != nil else {return}
+            if self?.presenter.order![indexPath.row].count! != 0 {
+                self?.presenter.order![indexPath.row].count! -= 1
+            }
+            
+        }
+        
+        cell.onPlusButtonTapped = { [weak self] in
+            guard self?.presenter.order?[indexPath.row].count != nil else {return}
+            if self?.presenter.order![indexPath.row].count! != 9 {
+                self?.presenter.order![indexPath.row].count! += 1
+            }
+        }
+        
+        cell.cofigure(name: name, count: count, price: price)
         return cell
     }
     

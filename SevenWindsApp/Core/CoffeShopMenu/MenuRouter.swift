@@ -22,6 +22,7 @@ class MenuRouter: MenuRouterProtocol {
     func goBack() {
         guard let vc = view as? UIViewController else {return}
         vc.navigationController?.popViewController(animated: true)
+        
     }
     
     func goPay(order: [Position]) {

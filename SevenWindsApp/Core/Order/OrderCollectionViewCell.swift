@@ -14,6 +14,7 @@ class OrderCollectionViewCell: UICollectionViewCell {
     let nameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 1
         label.font = UIFont.boldSystemFont(ofSize:18)
         label.textColor = UIColor.coffeShopsTheme.coffeShopTextColor
         label.text = "adfks"
@@ -22,20 +23,25 @@ class OrderCollectionViewCell: UICollectionViewCell {
     private let minusButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setImage(UIImage(named: "minusSign"), for: .normal)
+        button.setImage(UIImage(named: "minusDark"), for: .normal)
         button.addTarget(self, action: #selector(reduceCount), for: .touchDown)
         return button
     }()
     
-//    private let priceLabel: UILabel = {
-//        let label = UILabel()
-//        label.textColor = UIColor.
-//    }()
+    private let priceLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = UIColor.coffeShopsTheme.secondaryTextColor
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 1
+        label.font = UIFont.systemFont(ofSize: 16, weight: .regular)
+        return label
+        
+    }()
     
     private let plusButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setImage(UIImage(named: "plusSign"), for: .normal)
+        button.setImage(UIImage(named: "plusDark"), for: .normal)
         button.addTarget(self, action: #selector(addCount), for: .touchDown)
         return button
     }()
@@ -77,6 +83,7 @@ class OrderCollectionViewCell: UICollectionViewCell {
         contentView.addSubview(nameLabel)
         contentView.addSubview(countLabel)
         contentView.addSubview(minusButton)
+        contentView.addSubview(priceLabel)
         contentView.addSubview(plusButton)
     }
     
@@ -87,18 +94,50 @@ class OrderCollectionViewCell: UICollectionViewCell {
             nameLabel.heightAnchor.constraint(equalToConstant: 21),
             nameLabel.widthAnchor.constraint(equalToConstant: 253)
         ]
-        let countLabelConstraints = [
-            countLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
-            countLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 14)
+        
+        let priceLabelConstraints = [
+            priceLabel.widthAnchor.constraint(equalToConstant: 94),
+            priceLabel.heightAnchor.constraint(equalToConstant: 21),
+            priceLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
+            priceLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 6)
+            
         ]
         
+        
+        let minusButtonConstraints = [
+            minusButton.leadingAnchor.constraint(equalTo: nameLabel.trailingAnchor),
+            minusButton.widthAnchor.constraint(equalToConstant: 24),
+            minusButton.heightAnchor.constraint(equalToConstant: 24),
+            minusButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 24)
+        ]
+        
+        let countLabelConstraints = [
+            countLabel.leadingAnchor.constraint(equalTo: minusButton.trailingAnchor, constant: 9),
+            countLabel.heightAnchor.constraint(equalToConstant: 19),
+            countLabel.widthAnchor.constraint(equalToConstant: 10),
+            countLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 27)
+        ]
+        
+        let plusButtonConstraints = [
+            plusButton.leadingAnchor.constraint(equalTo: countLabel.trailingAnchor, constant: 9),
+            plusButton.widthAnchor.constraint(equalToConstant: 24),
+            plusButton.heightAnchor.constraint(equalToConstant: 24),
+            plusButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 27)
+            
+            
+        ]
+        
+        NSLayoutConstraint.activate(minusButtonConstraints)
+        NSLayoutConstraint.activate(plusButtonConstraints)
+        NSLayoutConstraint.activate(priceLabelConstraints)
         NSLayoutConstraint.activate(nameLabelConstraints)
         NSLayoutConstraint.activate(countLabelConstraints)
     }
     
-    func cofigure(name: String, count: Int) {
+    func cofigure(name: String, count: Int, price: Int) {
         self.nameLabel.text = name
         self.countLabel.text = "\(count)"
+        self.priceLabel.text = "\(price)руб"
         
     }
     

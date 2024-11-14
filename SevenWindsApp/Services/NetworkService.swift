@@ -30,7 +30,7 @@ class NetworkService: NetworkServiceProtocol {
     
     
 
-    let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJBdXRoZW50aWNhdGlvbiIsImlzcyI6ImNvZmZlZSBiYWNrZW5kIiwiaWQiOjE4NjksImV4cCI6MTczMTU4MjIzNH0.L0hftqNRLXL91TE7uJ4CtS3UYTT1x699MJYH855QJNU"
+    let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJBdXRoZW50aWNhdGlvbiIsImlzcyI6ImNvZmZlZSBiYWNrZW5kIiwiaWQiOjE4NzIsImV4cCI6MTczMTU4NzY1MX0.b6vyIMl7YgqzyXu2Ky7d-KErxr2XmtsrMk46d8BYbLA"
     
     func registration(with login: String, and pass: String, completion: @escaping (Result<AuthResponse, any Error>) -> ()) {
         let headers: HTTPHeaders = [.accept("application/json"), .contentType("application/json")]
