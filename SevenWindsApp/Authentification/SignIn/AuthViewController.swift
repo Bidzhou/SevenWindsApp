@@ -203,7 +203,6 @@ extension AuthViewController: AuthViewProtocol {
     }
     
     @objc func authButtonTouched() {
-        AuthRouter(view: self).jumpToCoffeShops()
         guard let email = emailTextField.text, let pass = passTextField.text else {return}
         presenter.enterButtonClicked(email: email, pass: pass)
     }
