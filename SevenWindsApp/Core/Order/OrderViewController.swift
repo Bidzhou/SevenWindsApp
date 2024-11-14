@@ -9,6 +9,7 @@ import UIKit
 protocol OrderViewProtocol: AnyObject {
     func backButtonTapped()
     func orderButtonTapped()
+    func success()
     var orderPositions: [Position]? {get set}
 }
 
@@ -28,7 +29,6 @@ class OrderViewController: UIViewController {
     
     init(order: [Position]) {
         self.orderPositions = order
-        self.presenter.order = order
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -40,7 +40,7 @@ class OrderViewController: UIViewController {
         super.viewDidLoad()
         order.delegate = self
         order.dataSource = self
-        configurator.configure(with: self)
+        configure()
         view.addSubview(order)
         setNavBar()
     }
@@ -48,6 +48,15 @@ class OrderViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         order.frame = view.bounds
+        
+    }
+    
+    func configure() {
+        self.configurator.configure(with: self)
+        self.presenter.order = orderPositions
+        print(orderPositions?.debugDescription)
+        success()
+        
     }
     
     private func setNavBar() {
@@ -84,19 +93,28 @@ extension OrderViewController: OrderViewProtocol {
         print("order Tapped")
     }
     
+    func success() {
+        order.reloadData()
+    }
+    
 }
 
 extension OrderViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        10
+        presenter.order?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: OrderCollectionViewCell.identifier, for: indexPath) as? OrderCollectionViewCell else {return UICollectionViewCell()}
+        let name = presenter.order?[indexPath.row].name ?? "s"
+        let count = presenter.order?[indexPath.row].count ?? 123222
+        cell.cofigure(name: name, count: count)
         return cell
     }
     
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: true)
+    }
     
     //отступы
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {

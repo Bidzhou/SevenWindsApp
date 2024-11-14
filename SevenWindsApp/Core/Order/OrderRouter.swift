@@ -20,10 +20,10 @@ class OrderRouter: OrderRouterProtocol {
     }
     
     func goBack() {
-        func goBack() {
-            guard let vc = view as? UIViewController else {return}
-            vc.navigationController?.popViewController(animated: true)
-        }
+        
+        guard let vc = view as? UIViewController else {return}
+        vc.navigationController?.popViewController(animated: true)
+        
     }
     
 }

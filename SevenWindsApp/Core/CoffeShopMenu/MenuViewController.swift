@@ -115,7 +115,9 @@ extension MenuViewController: MenuViewProtocol {
     
     
     func success() {
+        
         menu.reloadData()
+        
     }
 }
 
@@ -123,6 +125,7 @@ extension MenuViewController: MenuViewProtocol {
 
 extension MenuViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
         return presenter.positions?.count ?? 0
     }
     

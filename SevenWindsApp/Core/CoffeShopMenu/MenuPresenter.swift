@@ -40,7 +40,11 @@ class MenuPresenter: MenuPresenterProtocol {
             DispatchQueue.main.async { 
                 switch result {
                 case .success(let positionArray):
-                    self?.positions = positionArray
+                    self?.positions = positionArray.map({ position in
+                        var tempPosition = position
+                        tempPosition.count = 0
+                        return tempPosition
+                    })
                     self?.view.success()
                 case .failure(let error):
                     print(error.localizedDescription)
