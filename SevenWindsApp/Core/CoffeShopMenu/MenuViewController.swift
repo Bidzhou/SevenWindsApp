@@ -39,6 +39,8 @@ class MenuViewController: UIViewController {
         collectionView.register(MenuCollectionViewCell.self, forCellWithReuseIdentifier: MenuCollectionViewCell.identifier)
         return collectionView
     }()
+    
+
 
     init(shop: CoffeShop) {
         self.shop = shop
@@ -48,6 +50,7 @@ class MenuViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,6 +63,12 @@ class MenuViewController: UIViewController {
         createConstraints()
         setNavBar()
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        menu.reloadData()
     }
     
     override func viewDidLayoutSubviews() {

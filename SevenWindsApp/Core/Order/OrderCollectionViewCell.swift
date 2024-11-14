@@ -122,7 +122,7 @@ class OrderCollectionViewCell: UICollectionViewCell {
             plusButton.leadingAnchor.constraint(equalTo: countLabel.trailingAnchor, constant: 9),
             plusButton.widthAnchor.constraint(equalToConstant: 24),
             plusButton.heightAnchor.constraint(equalToConstant: 24),
-            plusButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 27)
+            plusButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 24)
             
             
         ]
