@@ -19,6 +19,21 @@ class OrderViewController: UIViewController {
     var presenter: OrderPresenterProtocol!
     let configurator = OrderConfigurator()
     
+    private let orderButton: UIButton =  {
+        let button = UIButton()
+        button.setTitle("Перейти к оплате", for: .normal)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize:18)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitleColor(UIColor.authTheme.buttonText, for: .normal)
+        button.backgroundColor = UIColor.authTheme.buttonBackground
+        button.layer.borderColor = CGColor.authTheme.buttonBorder
+        button.layer.borderWidth = 1
+        button.layer.cornerRadius = 24.5
+        button.addTarget(self, action: #selector(orderButtonTapped), for: .touchUpInside)
+        return button
+    }()
+
+    
     private let order: UICollectionView =  {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
@@ -40,21 +55,26 @@ class OrderViewController: UIViewController {
         super.viewDidLoad()
         order.delegate = self
         order.dataSource = self
-        configure()
         view.addSubview(order)
+        view.addSubview(orderButton)
+        configure()
+        createConstraints()
+        
         setNavBar()
+        
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         order.frame = view.bounds
         
+        
     }
     
     func configure() {
         self.configurator.configure(with: self)
         self.presenter.order = orderPositions
-        print(orderPositions?.debugDescription)
+        
         success()
         
     }
@@ -78,6 +98,13 @@ class OrderViewController: UIViewController {
         navigationItem.leftBarButtonItem = backButton
     }
     
+    private func createConstraints() {
+        let orderButtonConstraints = [orderButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -50),
+                                      orderButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+                                      orderButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+                                      orderButton.heightAnchor.constraint(equalToConstant: 48)]
+        NSLayoutConstraint.activate(orderButtonConstraints)
+    }
 
 
 }
@@ -89,7 +116,7 @@ extension OrderViewController: OrderViewProtocol {
 
     }
     
-    func orderButtonTapped() {
+    @objc func orderButtonTapped() {
         print("order Tapped")
     }
     

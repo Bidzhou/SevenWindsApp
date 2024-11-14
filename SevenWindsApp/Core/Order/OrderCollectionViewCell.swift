@@ -19,15 +19,38 @@ class OrderCollectionViewCell: UICollectionViewCell {
         label.text = "adfks"
         return label
     }()
-    let countLabel: UILabel = {
-        let label = UILabel()
+    private let minusButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setImage(UIImage(named: "minusSign"), for: .normal)
+        button.addTarget(self, action: #selector(reduceCount), for: .touchDown)
+        return button
+    }()
+    
+//    private let priceLabel: UILabel = {
+//        let label = UILabel()
+//        label.textColor = UIColor.
+//    }()
+    
+    private let plusButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setImage(UIImage(named: "plusSign"), for: .normal)
+        button.addTarget(self, action: #selector(addCount), for: .touchDown)
+        return button
+    }()
+    
+    private let countLabel: UILabel = {
+       let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.systemFont(ofSize: 16)
-        label.textColor = UIColor.coffeShopsTheme.secondaryTextColor
-        label.text = "3"
+        label.text = "0"
+        label.font = UIFont.systemFont(ofSize: 14, weight: .light)
+        label.textColor = UIColor.coffeShopsTheme.coffeShopTextColor
         return label
     }()
     
+    var onMinusButtonTapped: (() -> Void)!
+    var onPlusButtonTapped: (() -> Void)!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -53,6 +76,8 @@ class OrderCollectionViewCell: UICollectionViewCell {
     private func addSubviews() {
         contentView.addSubview(nameLabel)
         contentView.addSubview(countLabel)
+        contentView.addSubview(minusButton)
+        contentView.addSubview(plusButton)
     }
     
     private func createConstraints() {
@@ -75,6 +100,19 @@ class OrderCollectionViewCell: UICollectionViewCell {
         self.nameLabel.text = name
         self.countLabel.text = "\(count)"
         
+    }
+    
+    @objc func reduceCount() {
+        guard let intCount = Int(countLabel.text ?? "0"), intCount >= 1 else {return}
+        countLabel.text = "\(intCount - 1)"
+        onMinusButtonTapped()
+    }
+    
+    @objc func addCount() {
+        guard let intCount = Int(countLabel.text ?? "0"), intCount < 9 else {return}
+        countLabel.text = "\(intCount + 1)"
+
+        onPlusButtonTapped()
     }
     
 }
