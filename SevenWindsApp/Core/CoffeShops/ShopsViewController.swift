@@ -39,7 +39,7 @@ class ShopsViewController: UIViewController {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.showsVerticalScrollIndicator = false
         collectionView.register(ShopsCollectionViewCell.self, forCellWithReuseIdentifier: ShopsCollectionViewCell.identifier)
-        collectionView.backgroundColor = .systemBackground
+//        collectionView.backgroundColor = .systemBackground
         return collectionView
     }()
     
@@ -107,7 +107,7 @@ extension ShopsViewController: ShopsViewProtocol {
 
     
     @objc func backButtonTapped() {
-        navigationController?.popViewController(animated: true)
+        presenter.goBack()
     }
     
     @objc func mapButtonTouched() {

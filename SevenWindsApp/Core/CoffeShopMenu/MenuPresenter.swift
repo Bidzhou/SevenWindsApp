@@ -12,6 +12,8 @@ protocol MenuPresenterProtocol: AnyObject {
     var images: [UIImage]? {get set}
     func getPositions()
     func getImage(url: String, completion: @escaping (Result<UIImage, Error>) -> ())
+    func goBack()
+    func goPay()
     
 }
 
@@ -19,10 +21,18 @@ class MenuPresenter: MenuPresenterProtocol {
     var positions: [Position]? = nil
     var images: [UIImage]? = nil
     var interactor: MenuInteractorProtocol!
+    var router: MenuRouterProtocol!
     weak var view: MenuViewProtocol!
     
     required init(view: MenuViewProtocol) {
         self.view = view
+    }
+    
+    func goPay() {
+        let order = interactor.setOrder(allPositions: positions ?? [Position]())
+        guard !order.isEmpty else {return}
+        router.goPay(order: order)
+        
     }
     
     func getPositions() {
@@ -53,7 +63,10 @@ class MenuPresenter: MenuPresenterProtocol {
 
         }
     }
-
+    
+    func goBack() {
+        router.goBack()
+    }
     
     
 }

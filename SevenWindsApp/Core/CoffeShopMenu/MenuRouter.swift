@@ -9,13 +9,13 @@ import Foundation
 import UIKit
 protocol MenuRouterProtocol: AnyObject {
     func goBack()
-    func goPay()
+    func goPay(order: [Position])
 }
 
 class MenuRouter: MenuRouterProtocol {
-    weak var view: ShopsViewProtocol!
+    weak var view: MenuViewProtocol!
     
-    required init(view: ShopsViewProtocol!) {
+    required init(view: MenuViewProtocol!) {
         self.view = view
     }
     
@@ -24,8 +24,9 @@ class MenuRouter: MenuRouterProtocol {
         vc.navigationController?.popViewController(animated: true)
     }
     
-    func goPay() {
-        print("goPay")
+    func goPay(order: [Position]) {
+        guard let vc = view as? UIViewController else {return}
+        vc.navigationController?.pushViewController(OrderViewController(order: order), animated: true)
     }
     
     

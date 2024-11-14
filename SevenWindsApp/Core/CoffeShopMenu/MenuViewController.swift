@@ -9,6 +9,7 @@ import UIKit
 protocol MenuViewProtocol: AnyObject {
     var shop: CoffeShop? {get set}
     func success()
+    func payButtonTapped()
 }
 
 
@@ -27,7 +28,7 @@ class MenuViewController: UIViewController {
         button.layer.borderColor = CGColor.authTheme.buttonBorder
         button.layer.borderWidth = 1
         button.layer.cornerRadius = 24.5
-        //button.addTarget(self, action: #selector(mapButtonTouched), for: .touchUpInside)
+        button.addTarget(self, action: #selector(payButtonTapped), for: .touchUpInside)
         return button
     }()
     
@@ -88,7 +89,7 @@ class MenuViewController: UIViewController {
     }
     
     @objc func backButtonTapped() {
-        self.navigationController?.popViewController(animated: true)
+        presenter.goBack()
     }
     
     private func createConstraints() {
@@ -106,6 +107,10 @@ class MenuViewController: UIViewController {
 }
 
 extension MenuViewController: MenuViewProtocol {
+    @objc func payButtonTapped() {
+        presenter.goPay()
+    }
+    
     
     
     

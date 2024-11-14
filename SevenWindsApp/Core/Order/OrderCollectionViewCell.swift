@@ -7,6 +7,8 @@
 
 import UIKit
 
+
+
 class OrderCollectionViewCell: UICollectionViewCell {
     static let identifier: String = "OrderCollectionViewCell"
     let nameLabel: UILabel = {
@@ -44,8 +46,12 @@ class OrderCollectionViewCell: UICollectionViewCell {
             nameLabel.heightAnchor.constraint(equalToConstant: 21),
             nameLabel.widthAnchor.constraint(equalToConstant: 253)
         ]
-        
+        let countLabelConstraints = [
+            countLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
+            countLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 14)
+        ]
         
         NSLayoutConstraint.activate(nameLabelConstraints)
+        NSLayoutConstraint.activate(countLabelConstraints)
     }
 }

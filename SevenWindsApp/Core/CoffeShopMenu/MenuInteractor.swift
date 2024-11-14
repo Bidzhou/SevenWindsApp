@@ -9,6 +9,7 @@ import Foundation
 
 protocol MenuInteractorProtocol: AnyObject {
     var networkService: NetworkServiceProtocol {get}
+    func setOrder(allPositions: [Position]) -> [Position]
 }
 
 
@@ -19,4 +20,16 @@ class MenuInteractor: MenuInteractorProtocol {
     required init(presenter: MenuPresenterProtocol) {
         self.presenter = presenter
     }
+    
+    
+    func setOrder(allPositions: [Position]) -> [Position] {
+        var order: [Position] = []
+        for position in allPositions {
+            if position.count != 0 {
+                order.append(position)
+            }
+        }
+        return order
+    }
+    
 }
