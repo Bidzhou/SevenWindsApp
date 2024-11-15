@@ -12,6 +12,7 @@ import UIKit
 protocol RegPresenterProtocol: AnyObject {
     
     func regButtonClicked(email: String, pass: String, rePass: String)
+    func goAuth()
 }
 
 class RegPresenter: RegPresenterProtocol {
@@ -19,6 +20,10 @@ class RegPresenter: RegPresenterProtocol {
     weak var view: RegViewProtocol!
     var interactor: RegInteractorProtocol!
     var router: RegRouterProtocol!
+    
+    func goAuth() {
+        router.goToAuthScreen()
+    }
     
     func regButtonClicked(email: String, pass: String, rePass: String) {
         guard !email.isEmpty, !pass.isEmpty, !rePass.isEmpty else {return}

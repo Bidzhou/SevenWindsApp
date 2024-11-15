@@ -10,6 +10,7 @@ import Foundation
 
 protocol AuthPresenterProtocol: AnyObject {
     func enterButtonClicked(email: String, pass: String)
+    func goBack()
 }
 
 class AuthPresenter: AuthPresenterProtocol {
@@ -34,6 +35,10 @@ class AuthPresenter: AuthPresenterProtocol {
             }
         }
         
+    }
+    
+    func goBack() {
+        router.goBack()
     }
     
     

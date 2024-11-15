@@ -11,7 +11,7 @@ class ShopsCollectionViewCell: UICollectionViewCell {
     
     static let identifier = "testShit"
     
-    let coffeShopNameLabel: UILabel = {
+    private let coffeShopNameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "SOME TEXT"
@@ -19,7 +19,7 @@ class ShopsCollectionViewCell: UICollectionViewCell {
         label.textColor = UIColor.coffeShopsTheme.coffeShopTextColor
         return label
     }()
-    let locationLabel: UILabel = {
+    private let locationLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "some text too"
@@ -59,6 +59,7 @@ class ShopsCollectionViewCell: UICollectionViewCell {
     }
     
     func configure(with coffeShopName: String, and location: String) {
-        
+        coffeShopNameLabel.text = coffeShopName
+        locationLabel.text = location
     }
 }

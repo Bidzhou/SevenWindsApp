@@ -10,6 +10,7 @@ import UIKit
 
 protocol AuthRouterProtocol: AnyObject {
     func jumpToCoffeShops()
+    func goBack()
 }
 
 class AuthRouter: AuthRouterProtocol {
@@ -23,4 +24,10 @@ class AuthRouter: AuthRouterProtocol {
         guard let vc = view as? UIViewController else {return}
         vc.navigationController?.pushViewController(ShopsViewController(), animated: true)
     }
+    
+    func goBack() {
+        guard let vc = view as? UIViewController else {return}
+        vc.navigationController?.popViewController(animated: true)
+    }
+    
 }

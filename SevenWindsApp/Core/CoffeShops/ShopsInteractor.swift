@@ -13,12 +13,9 @@ protocol ShopsInteractorProtocol: AnyObject {
 }
 
 class ShopsInteractor: ShopsInteractorProtocol {
-
-    
     weak var presenter: ShopsPresenterProtocol!
     
     let networkingService: any NetworkServiceProtocol = NetworkService()
-    
     
     required init(presenter: ShopsPresenterProtocol) {
         self.presenter = presenter

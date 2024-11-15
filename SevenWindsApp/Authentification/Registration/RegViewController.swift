@@ -180,6 +180,14 @@ class RegViewController: UIViewController {
         navigationController?.navigationBar.standardAppearance = appearance
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
         navigationItem.title = "Регистрация"
+        
+        let signInButton = UIBarButtonItem(title: "Войти", image: nil, target: self, action: #selector(goSign))
+        signInButton.tintColor = UIColor.authTheme.labelText
+        navigationItem.rightBarButtonItem = signInButton
+    }
+    
+    @objc private func goSign() {
+        self.presenter.goAuth()
     }
     
     private func createConstraints() {

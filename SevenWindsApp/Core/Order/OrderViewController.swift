@@ -112,7 +112,9 @@ class OrderViewController: UIViewController {
 
 extension OrderViewController: OrderViewProtocol {
     @objc func backButtonTapped() {
+        NotificationCenter.default.post(name: NSNotification.Name("OrderUpdated"), object: nil, userInfo: ["positions": presenter.order ?? []])
         presenter.goBack()
+
 
     }
     
@@ -138,18 +140,11 @@ extension OrderViewController: UICollectionViewDelegate, UICollectionViewDataSou
         let price = presenter.order?[indexPath.row].price ?? 0
         
         cell.onMinusButtonTapped = { [weak self] in
-            guard self?.presenter.order?[indexPath.row].count != nil else {return}
-            if self?.presenter.order![indexPath.row].count! != 0 {
-                self?.presenter.order![indexPath.row].count! -= 1
-            }
-            
+            self?.presenter.onMinusButtonTapped(index: indexPath.row)
         }
         
         cell.onPlusButtonTapped = { [weak self] in
-            guard self?.presenter.order?[indexPath.row].count != nil else {return}
-            if self?.presenter.order![indexPath.row].count! != 9 {
-                self?.presenter.order![indexPath.row].count! += 1
-            }
+            self?.presenter.onPlusButtonTapped(index: indexPath.row)
         }
         
         cell.cofigure(name: name, count: count, price: price)
@@ -167,7 +162,6 @@ extension OrderViewController: UICollectionViewDelegate, UICollectionViewDataSou
     
     //длина и ширина
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        // Указываем отступы по бокам
         let horizontalInset: CGFloat = 10
         let itemWidth = collectionView.bounds.width - (horizontalInset * 2)
         let itemHeight: CGFloat = 71

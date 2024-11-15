@@ -21,6 +21,7 @@ class RegRouter: RegRouterProtocol {
         self.currentViewController = currentViewController
         
     }
+
     
     func goToAuthScreen() {
         guard let viewController = currentViewController as? UIViewController else {return}

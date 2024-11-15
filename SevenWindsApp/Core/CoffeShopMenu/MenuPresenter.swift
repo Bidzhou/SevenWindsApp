@@ -14,11 +14,12 @@ protocol MenuPresenterProtocol: AnyObject {
     func getImage(url: String, completion: @escaping (Result<UIImage, Error>) -> ())
     func goBack()
     func goPay()
+    func updatePositionCount(order: [Position],  positions: inout [Position])
     
 }
 
 class MenuPresenter: MenuPresenterProtocol {
-    var positions: [Position]? = nil
+    var positions: [Position]? 
     var images: [UIImage]? = nil
     var interactor: MenuInteractorProtocol!
     var router: MenuRouterProtocol!
@@ -70,6 +71,9 @@ class MenuPresenter: MenuPresenterProtocol {
     
     func goBack() {
         router.goBack()
+    }
+    func updatePositionCount(order: [Position],  positions: inout [Position]) {
+        self.interactor.updatePositionCount(order: order, positions: &positions)
     }
     
     

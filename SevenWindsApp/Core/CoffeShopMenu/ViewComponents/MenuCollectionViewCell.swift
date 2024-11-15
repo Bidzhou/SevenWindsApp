@@ -52,7 +52,7 @@ class MenuCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 15, weight: .medium)
-        label.text = "Эспрессо"
+        label.text = "Какой-то кофе"
         label.textColor = UIColor.coffeShopsTheme.secondaryTextColor
         label.numberOfLines = 1
         return label

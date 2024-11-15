@@ -12,7 +12,6 @@
 		0002044C2CE5C07E00AE6E18 /* OrderInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0002044B2CE5C07E00AE6E18 /* OrderInteractor.swift */; };
 		0002044E2CE5C08700AE6E18 /* OrderConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0002044D2CE5C08700AE6E18 /* OrderConfigurator.swift */; };
 		000204502CE5C09400AE6E18 /* OrderRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0002044F2CE5C09400AE6E18 /* OrderRouter.swift */; };
-		000204532CE73BC500AE6E18 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000204522CE73BC500AE6E18 /* Config.swift */; };
 		007F70D92CDEACD0006416C5 /* URLRespones.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007F70D82CDEACD0006416C5 /* URLRespones.swift */; };
 		007F70E02CDF5F0A006416C5 /* ShopsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007F70DF2CDF5F0A006416C5 /* ShopsConfigurator.swift */; };
 		007F70E22CDF5F24006416C5 /* ShopsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007F70E12CDF5F24006416C5 /* ShopsPresenter.swift */; };
@@ -57,7 +56,6 @@
 		0002044B2CE5C07E00AE6E18 /* OrderInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderInteractor.swift; sourceTree = "<group>"; };
 		0002044D2CE5C08700AE6E18 /* OrderConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderConfigurator.swift; sourceTree = "<group>"; };
 		0002044F2CE5C09400AE6E18 /* OrderRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderRouter.swift; sourceTree = "<group>"; };
-		000204522CE73BC500AE6E18 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		007F70D82CDEACD0006416C5 /* URLRespones.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLRespones.swift; sourceTree = "<group>"; };
 		007F70DF2CDF5F0A006416C5 /* ShopsConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopsConfigurator.swift; sourceTree = "<group>"; };
 		007F70E12CDF5F24006416C5 /* ShopsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopsPresenter.swift; sourceTree = "<group>"; };
@@ -120,14 +118,6 @@
 				0002044F2CE5C09400AE6E18 /* OrderRouter.swift */,
 			);
 			path = Order;
-			sourceTree = "<group>";
-		};
-		000204512CE73B9E00AE6E18 /* Config */ = {
-			isa = PBXGroup;
-			children = (
-				000204522CE73BC500AE6E18 /* Config.swift */,
-			);
-			path = Config;
 			sourceTree = "<group>";
 		};
 		007F70D72CDEAC55006416C5 /* Models */ = {
@@ -217,7 +207,6 @@
 			children = (
 				009CFED22CDCD3C900715DA4 /* AppDelegate.swift */,
 				009CFED42CDCD3C900715DA4 /* SceneDelegate.swift */,
-				000204512CE73B9E00AE6E18 /* Config */,
 				009CFEED2CDCE4B100715DA4 /* Services */,
 				007F70DD2CDF5AF2006416C5 /* Core */,
 				007F70D72CDEAC55006416C5 /* Models */,
@@ -379,7 +368,6 @@
 				009CFEE72CDCE38200715DA4 /* AuthConfigurator.swift in Sources */,
 				000204472CE4FF1200AE6E18 /* OrderCollectionViewCell.swift in Sources */,
 				0002044E2CE5C08700AE6E18 /* OrderConfigurator.swift in Sources */,
-				000204532CE73BC500AE6E18 /* Config.swift in Sources */,
 				009CFED52CDCD3C900715DA4 /* SceneDelegate.swift in Sources */,
 				007F70EF2CE0509F006416C5 /* ShopsCollectionViewCell.swift in Sources */,
 				007F70D92CDEACD0006416C5 /* URLRespones.swift in Sources */,

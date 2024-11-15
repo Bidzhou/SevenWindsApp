@@ -136,7 +136,8 @@ extension ShopsViewController: UICollectionViewDelegate, UICollectionViewDataSou
     //cell creation
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ShopsCollectionViewCell.identifier, for: indexPath) as? ShopsCollectionViewCell else {return UICollectionViewCell()}
-        cell.coffeShopNameLabel.text = presenter.coffeShops?[indexPath.row].name ?? "Технические Шоколадки"
+        let name = presenter.coffeShops?[indexPath.row].name ?? "Технические Шоколадки"
+        cell.configure(with: name, and: "some text")
         return cell
     }
     

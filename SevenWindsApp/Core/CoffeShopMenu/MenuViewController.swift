@@ -57,7 +57,8 @@ class MenuViewController: UIViewController {
         configurator.configure(with: self)
         menu.dataSource = self
         menu.delegate = self
-        
+        NotificationCenter.default.addObserver(self, selector: #selector(updatePositions(_:)), name: NSNotification.Name("OrderUpdated"), object: nil)
+
         view.addSubview(menu)
         view.addSubview(payButton)
         createConstraints()
@@ -65,17 +66,20 @@ class MenuViewController: UIViewController {
         
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        menu.reloadData()
-    }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 //        let newView = UIView(frame: CGRect(origin: CGPoint(x: 0, y: view.safeAreaInsets.top + 20), size: CGSize(width: view.bounds.width, height: view.bounds.height - 120)))
 //        menu.frame = newView.bounds
         menu.frame = view.bounds
+    }
+    @objc func updatePositions(_ notification: Notification) {
+        if let order = notification.userInfo?["positions"] as? [Position] {
+            guard var positions = presenter.positions else {return}
+            presenter.updatePositionCount(order: order, positions: &positions)
+            presenter.positions = positions
+            menu.reloadData()
+        }
     }
     
     private func setNavBar() {

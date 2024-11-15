@@ -14,10 +14,7 @@ enum ErrorCasses: Error {
     case DownloadingImageError
 }
 
-/*
-{
- "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJBdXRoZW50aWNhdGlvbiIsImlzcyI6ImNvZmZlZSBiYWNrZW5kIiwiaWQiOjE4MTMsImV4cCI6MTczMTMxNTYxOH0.Yup3QzqeeHQP6TqgV912esFQuPOyqe1CyTFC51NQ2Jc"
- */
+
 protocol NetworkServiceProtocol {
     func registration(with login: String, and pass: String, completion: @escaping (Result<AuthResponse, Error>) -> ())
     func signIn(with login: String, and pass: String, completion: @escaping (Result<AuthResponse, Error>) -> ())
@@ -61,6 +58,7 @@ class NetworkService: NetworkServiceProtocol {
         let parameters = ["login": login, "password": pass]
         
         AF.request("http://147.78.66.203:3210/auth/login", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseDecodable(of: AuthResponse.self) { response in
+            debugPrint(response)
             switch response.result {
             case .success(let data):
                 completion(.success(data))

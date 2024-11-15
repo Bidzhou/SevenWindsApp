@@ -120,6 +120,19 @@ class AuthViewController: UIViewController {
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
         navigationItem.title = "Вход"
         navigationItem.hidesBackButton = true
+        let backButton = UIBarButtonItem(
+            title: "Регистрация",
+            image: nil,
+            target: self,
+            action: #selector(goReg)
+        )
+        backButton.tintColor = UIColor.authTheme.labelText
+        navigationItem.leftBarButtonItem = backButton
+        
+    }
+    
+    @objc private func goReg() {
+        self.presenter.goBack()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -205,6 +218,8 @@ extension AuthViewController: AuthViewProtocol {
     @objc func authButtonTouched() {
         guard let email = emailTextField.text, let pass = passTextField.text else {return}
         presenter.enterButtonClicked(email: email, pass: pass)
+        sleep(2)
+        passTextField.text = ""
     }
     
     
