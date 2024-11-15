@@ -29,8 +29,8 @@ protocol NetworkServiceProtocol {
 class NetworkService: NetworkServiceProtocol {
     
     
-
-    let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJBdXRoZW50aWNhdGlvbiIsImlzcyI6ImNvZmZlZSBiYWNrZW5kIiwiaWQiOjE4NzIsImV4cCI6MTczMTU4NzY1MX0.b6vyIMl7YgqzyXu2Ky7d-KErxr2XmtsrMk46d8BYbLA"
+    lazy var token = UserDefaults.standard.string(forKey: "authToken")
+    
     
     func registration(with login: String, and pass: String, completion: @escaping (Result<AuthResponse, any Error>) -> ()) {
         let headers: HTTPHeaders = [.accept("application/json"), .contentType("application/json")]
@@ -47,7 +47,7 @@ class NetworkService: NetworkServiceProtocol {
             switch response.result {
             case .success(let data):
                 completion(.success(data))
-                print(data.token)
+                UserDefaults.standard.set(data.token, forKey: "authToken")
             case .failure(let error):
                 completion(.failure(error))
             }
@@ -62,9 +62,9 @@ class NetworkService: NetworkServiceProtocol {
         
         AF.request("http://147.78.66.203:3210/auth/login", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseDecodable(of: AuthResponse.self) { response in
             switch response.result {
-                
             case .success(let data):
                 completion(.success(data))
+                UserDefaults.standard.set(data.token, forKey: "authToken")
             case .failure(let error):
                 completion(.failure(error))
             }
@@ -72,7 +72,7 @@ class NetworkService: NetworkServiceProtocol {
     }
     
     func getLocations(completion: @escaping (Result<[CoffeShop], any Error>) -> ()) {
-        let headers: HTTPHeaders = [.accept("application/json"), .authorization(bearerToken:  token)]
+        let headers: HTTPHeaders = [.accept("application/json"), .authorization(bearerToken:  (token ?? "") as String)]
        
         AF.request("http://147.78.66.203:3210/locations",encoding: JSONEncoding.default, headers: headers).responseDecodable(of: [CoffeShop].self) { response in
 //            debugPrint(response)
@@ -86,7 +86,7 @@ class NetworkService: NetworkServiceProtocol {
     }
     
     func getMenu(with id: Int, completion: @escaping (Result<[Position], any Error>) -> ()) {
-        let headers: HTTPHeaders = [.accept("application/json"), .authorization(bearerToken: token)]
+        let headers: HTTPHeaders = [.accept("application/json"), .authorization(bearerToken: (token ?? "") as String)]
         AF.request("http://147.78.66.203:3210/location/\(id)/menu",encoding: JSONEncoding.default, headers: headers).responseDecodable(of: [Position].self) { response in
 //            debugPrint(response)
             switch response.result {
