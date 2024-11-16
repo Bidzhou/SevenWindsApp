@@ -6,9 +6,10 @@
 //
 
 import Foundation
-
+import CoreLocation
 protocol ShopsInteractorProtocol: AnyObject {
     var networkingService: NetworkServiceProtocol {get}
+    func setLocations(shops: [CoffeShop]) -> [CLLocation]
     
 }
 
@@ -20,7 +21,15 @@ class ShopsInteractor: ShopsInteractorProtocol {
     required init(presenter: ShopsPresenterProtocol) {
         self.presenter = presenter
     }
-
+    
+    func setLocations(shops: [CoffeShop]) -> [CLLocation] {
+        let locations: [CLLocation] = shops.map({CLLocation(latitude: Double($0.point.latitude) ?? 55.7558 , longitude: Double($0.point.longitude) ?? 37.6173)})
+        return locations
+    }
+    
+    
+    
+    
     
     
 }

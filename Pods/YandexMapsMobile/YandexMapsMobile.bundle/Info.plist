@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>CFBundleIdentifier</key>
+    <string>com.yandex.YandexMapsMobile</string>
+    <key>CFBundlePackageType</key>
+    <string>BNDL</string>
+    <key>CFBundleShortVersionString</key>
+    <string>2024080118.35-dcf1d96f9fc33cb-107.10-lite-public</string>
+    <key>CFBundleSignature</key>
+    <string>????</string>
+    <key>CFBundleVersion</key>
+    <string>2024080118.35-dcf1d96f9fc33cb-107.10-lite-public</string>
+    <key>bundleName</key>
+    <string>YandexMapsMobile</string>
+    <key>MinimumOsVersion</key>
+    <string>13.0</string>
+</dict>
+</plist>

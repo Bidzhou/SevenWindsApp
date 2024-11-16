@@ -8,7 +8,6 @@
 import Foundation
 import Alamofire
 import UIKit
-import SDWebImage
 
 enum ErrorCasses: Error {
     case DownloadingImageError
@@ -56,7 +55,6 @@ class NetworkService: NetworkServiceProtocol {
     func signIn(with login: String, and pass: String, completion: @escaping (Result<AuthResponse, any Error>) -> ()) {
         let headers: HTTPHeaders = [.accept("application/json"), .contentType("application/json")]
         let parameters = ["login": login, "password": pass]
-        
         AF.request("http://147.78.66.203:3210/auth/login", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseDecodable(of: AuthResponse.self) { response in
             switch response.result {
             case .success(let data):

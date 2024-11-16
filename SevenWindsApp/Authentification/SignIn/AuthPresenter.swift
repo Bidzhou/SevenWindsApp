@@ -28,7 +28,6 @@ class AuthPresenter: AuthPresenterProtocol {
             switch authResponse {
             
             case .success(let data):
-                print(data)
                 self?.router.jumpToCoffeShops()
             case .failure(let error):
                 print(error.localizedDescription)

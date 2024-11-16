@@ -7,10 +7,11 @@
 
 import Foundation
 import UIKit
-
+import CoreLocation
 protocol ShopsRouterProtocol: AnyObject {
     func goBack()
     func goToTheCoffeShop(_ shop: CoffeShop)
+    func goToMap(currentLocation: CLLocation, locations: [CLLocation])
 }
 
 class ShopsRouter: ShopsRouterProtocol {
@@ -28,6 +29,11 @@ class ShopsRouter: ShopsRouterProtocol {
     func goToTheCoffeShop(_ shop: CoffeShop) {
         guard let vc = view as? UIViewController else {return}
         vc.navigationController?.pushViewController(MenuViewController(shop: shop), animated: true)
+    }
+    
+    func goToMap(currentLocation: CLLocation, locations: [CLLocation]) {
+        guard let vc = view as? UIViewController else {return}
+        vc.navigationController?.pushViewController(MapViewController(currentLocation: currentLocation, locations: locations), animated: true)
     }
     
     

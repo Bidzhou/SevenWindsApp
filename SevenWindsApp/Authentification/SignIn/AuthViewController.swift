@@ -91,7 +91,7 @@ class AuthViewController: UIViewController {
         let rightPaddingView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: textField.frame.height))
         textField.rightView = rightPaddingView
         textField.rightViewMode = .always
-        textField.textContentType = .newPassword
+        textField.textContentType = .none
         return textField
     }()
 

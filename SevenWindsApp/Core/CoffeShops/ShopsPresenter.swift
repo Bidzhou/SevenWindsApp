@@ -6,13 +6,16 @@
 //
 
 import Foundation
+import CoreLocation
 
 protocol ShopsPresenterProtocol: AnyObject {
     var coffeShops: [CoffeShop]? {get set}
+    var locations: [CLLocation]? {get set}
     func getAllCoffeShops()
     func goToTheCoffeShop(_ shop: CoffeShop)
-    func showOnMaps()
+    func showOnMaps(currentLocation: CLLocation, locations: [CLLocation])
     func goBack()
+    func formatDistance(_ distanceInMeters: Double) -> String
 }
 
 class ShopsPresenter: ShopsPresenterProtocol {
@@ -20,7 +23,7 @@ class ShopsPresenter: ShopsPresenterProtocol {
     var coffeShops: [CoffeShop]? = nil
     var interactor: ShopsInteractorProtocol!
     var router: ShopsRouterProtocol!
-    
+    var locations: [CLLocation]? = nil
     
     required init(view: ShopsViewProtocol) {
         self.view = view
@@ -34,8 +37,9 @@ class ShopsPresenter: ShopsPresenterProtocol {
             DispatchQueue.main.async {
                 switch result {
                 case .success(let coffeShops):
-                        self?.coffeShops = coffeShops
-                        self?.view.successDownloadingData()
+                    self?.coffeShops = coffeShops
+                    self?.locations = self?.interactor.setLocations(shops: coffeShops)
+                    self?.view.successDownloadingData()
                 case .failure(let error):
                     print(error.localizedDescription)
                 }
@@ -49,13 +53,30 @@ class ShopsPresenter: ShopsPresenterProtocol {
         router.goToTheCoffeShop(shop)
     }
     
-    func showOnMaps() {
-        print("maps")
+    func showOnMaps(currentLocation: CLLocation, locations: [CLLocation]) {
+        router.goToMap(currentLocation: currentLocation, locations: locations)
     }
     
     func goBack() {
         router.goBack()
     }
+    
+    func formatDistance(_ distanceInMeters: Double) -> String {
+        let distance = Measurement(value: distanceInMeters, unit: UnitLength.meters)
+        let formatter = MeasurementFormatter()
+        formatter.unitOptions = .providedUnit
+        
+        
+        if distanceInMeters >= 1000 {
+            let distanceInKilometers = distance.converted(to: .kilometers)
+            formatter.numberFormatter.maximumFractionDigits = 1
+            return "\(formatter.string(from: distanceInKilometers)) от вас"
+        } else {
+            formatter.numberFormatter.maximumFractionDigits = 0
+            return "\(formatter.string(from: distance)) от вас"
+        }
+    }
+
     
     
 }

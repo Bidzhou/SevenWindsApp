@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import CoreLocation
+
 protocol ShopsViewProtocol: AnyObject {
     func backButtonTapped()
     func mapButtonTouched()
@@ -14,7 +16,8 @@ protocol ShopsViewProtocol: AnyObject {
 
 
 class ShopsViewController: UIViewController {
-    
+    private let locationManager = CLLocationManager()
+    private var currentLocation: CLLocation?
     var presenter: ShopsPresenterProtocol!
     let configurator = ShopsConfigurator()
 
@@ -39,7 +42,6 @@ class ShopsViewController: UIViewController {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.showsVerticalScrollIndicator = false
         collectionView.register(ShopsCollectionViewCell.self, forCellWithReuseIdentifier: ShopsCollectionViewCell.identifier)
-//        collectionView.backgroundColor = .systemBackground
         return collectionView
     }()
     
@@ -51,6 +53,7 @@ class ShopsViewController: UIViewController {
         view.addSubview(mapButton)
         createConstraints()
         setNavBar()
+        setLocationService()
         configurator.configure(with: self)
         
     }
@@ -63,6 +66,12 @@ class ShopsViewController: UIViewController {
         coffeShops.frame = view.bounds
         
         
+    }
+    
+    private func setLocationService() {
+        locationManager.delegate = self
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
     }
     
     private func setNavBar() {
@@ -103,27 +112,37 @@ extension ShopsViewController: ShopsViewProtocol {
     func successDownloadingData() {
         coffeShops.reloadData()
     }
-    
 
-    
     @objc func backButtonTapped() {
         presenter.goBack()
     }
     
     @objc func mapButtonTouched() {
-        NetworkService().getLocations { result in
-            switch result {
-                
-            case .success(let res):
-                print(res)
-            case .failure(let error):
-                print(error)
-            }
-        }
+        guard currentLocation != nil else {return}
+        guard presenter.locations != nil else {return}
+        presenter.showOnMaps(currentLocation: currentLocation!, locations: presenter.locations!)
     }
 }
 
 
+
+extension ShopsViewController: CLLocationManagerDelegate {
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let location = locations.last else {
+            print("No location available")
+            return
+        }
+        print("Location updated: \(location.coordinate.latitude), \(location.coordinate.longitude)")
+        currentLocation = location
+        coffeShops.reloadData()
+        locationManager.stopUpdatingLocation()
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("Failed to get location: \(error.localizedDescription)")
+    }
+}
 
 extension ShopsViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
@@ -137,7 +156,11 @@ extension ShopsViewController: UICollectionViewDelegate, UICollectionViewDataSou
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ShopsCollectionViewCell.identifier, for: indexPath) as? ShopsCollectionViewCell else {return UICollectionViewCell()}
         let name = presenter.coffeShops?[indexPath.row].name ?? "Технические Шоколадки"
-        cell.configure(with: name, and: "some text")
+        let location = presenter.locations?[indexPath.row] ?? CLLocation(latitude: 55.7558, longitude: 37.6173)
+        let distance = presenter.formatDistance((currentLocation?.distance(from: location) ?? 0.0))
+        
+        cell.configure(with: name, and: distance)
+       
         return cell
     }
     

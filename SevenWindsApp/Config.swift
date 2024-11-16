@@ -7,3 +7,9 @@
 
 import Foundation
 //privet
+class Config {
+    static let shared = Config()
+    private init() {}
+    
+     let YaKey = ""
+}
