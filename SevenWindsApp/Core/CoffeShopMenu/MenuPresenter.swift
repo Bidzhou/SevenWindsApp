@@ -15,7 +15,8 @@ protocol MenuPresenterProtocol: AnyObject {
     func goBack()
     func goPay()
     func updatePositionCount(order: [Position],  positions: inout [Position])
-    
+    func onMinusButtonTapped(index: Int)
+    func onPlusButtonTapped(index: Int)
 }
 
 class MenuPresenter: MenuPresenterProtocol {
@@ -74,6 +75,16 @@ class MenuPresenter: MenuPresenterProtocol {
     }
     func updatePositionCount(order: [Position],  positions: inout [Position]) {
         self.interactor.updatePositionCount(order: order, positions: &positions)
+    }
+    
+    func onMinusButtonTapped(index: Int)  {
+        guard positions != nil, positions?[index].count != 0 else {return}
+        positions?[index].count! -= 1
+    }
+    
+    func onPlusButtonTapped(index: Int) {
+        guard positions != nil, positions?[index].count != 9 else {return}
+        positions?[index].count! += 1
     }
     
     

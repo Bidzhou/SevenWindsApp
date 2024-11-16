@@ -151,18 +151,10 @@ extension MenuViewController: UICollectionViewDelegate, UICollectionViewDataSour
         guard let id = presenter.positions?[indexPath.row].id else {return UICollectionViewCell()}
         
         cell.onMinusButtonTapped = { [weak self] in
-            guard self?.presenter.positions?[indexPath.row].count != nil else {return}
-            if self?.presenter.positions![indexPath.row].count! != 0 {
-                self?.presenter.positions![indexPath.row].count! -= 1
-            }
-            
+            self?.presenter.onMinusButtonTapped(index: indexPath.row)
         }
         cell.onPlusButtonTapped = { [weak self] in
-            guard self?.presenter.positions?[indexPath.row].count != nil else {return}
-            if self?.presenter.positions![indexPath.row].count! != 9 {
-                self?.presenter.positions![indexPath.row].count! += 1
-            }
-            
+            self?.presenter.onPlusButtonTapped(index: indexPath.row)
         }
         if cacheImages.contains(where: {$0.key == id}) {
             if let image = cacheImages[id] {
