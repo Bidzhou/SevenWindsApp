@@ -17,7 +17,7 @@ class MenuViewController: UIViewController {
     var presenter: MenuPresenterProtocol!
     let configurator =  MenuConfigurator()
     var shop: CoffeShop? = nil
-    
+    var cacheImages: [Int: UIImage] = [:]
     private let payButton: UIButton =  {
         let button = UIButton()
         button.setTitle("Перейти к оплате", for: .normal)
@@ -148,6 +148,8 @@ extension MenuViewController: UICollectionViewDelegate, UICollectionViewDataSour
         let price = presenter.positions?[indexPath.row].price ?? 0
         let url = presenter.positions?[indexPath.row].imageURL ?? ""
         let count = presenter.positions?[indexPath.row].count ?? 0
+        guard let id = presenter.positions?[indexPath.row].id else {return UICollectionViewCell()}
+        
         cell.onMinusButtonTapped = { [weak self] in
             guard self?.presenter.positions?[indexPath.row].count != nil else {return}
             if self?.presenter.positions![indexPath.row].count! != 0 {
@@ -162,17 +164,30 @@ extension MenuViewController: UICollectionViewDelegate, UICollectionViewDataSour
             }
             
         }
-        presenter.getImage(url: url) { result in
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let image):
-                    cell.configure(name: name, price: price, image: image, count: count)
-                case .failure(let error):
-                    print(error.localizedDescription)
-                }
+        if cacheImages.contains(where: {$0.key == id}) {
+            if let image = cacheImages[id] {
+                cell.setImage(image: image)
+            } else {
+                cell.setImage(image: UIImage(systemName: "asap")!)
             }
+        } else {
+            self.presenter.getImage(url: url) {[weak self] result in
+                DispatchQueue.main.async {
+                    switch result {
+                    case .success(let image):
+                        cell.setImage(image: image)
+                        //guard let id = self?.presenter.positions?[indexPath.row].id else {return}
+                        self?.cacheImages.updateValue(image, forKey: id)
+                    case .failure(let error):
+                        print(error.localizedDescription)
+                    }
+                }
 
+            }
         }
+
+        
+        cell.configure(name: name, price: price,count: count)
         return cell
     }
     

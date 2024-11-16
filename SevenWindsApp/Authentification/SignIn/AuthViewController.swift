@@ -218,8 +218,9 @@ extension AuthViewController: AuthViewProtocol {
     @objc func authButtonTouched() {
         guard let email = emailTextField.text, let pass = passTextField.text else {return}
         presenter.enterButtonClicked(email: email, pass: pass)
-        sleep(2)
+        loginButton.isEnabled = false
         passTextField.text = ""
+        loginButton.isEnabled = true
     }
     
     

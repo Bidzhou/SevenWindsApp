@@ -170,10 +170,14 @@ class MenuCollectionViewCell: UICollectionViewCell {
 
     }
     
-    public func configure(name: String, price: Int, image: UIImage, count: Int) {
+    public func setImage(image: UIImage) {
+        positionPhoto.image = image
+    }
+    
+    public func configure(name: String, price: Int, count: Int) {
         self.positionName.text = name
         self.positionPrice.text = "\(price) руб"
-        self.positionPhoto.image = image
+        
         self.countLabel.text = "\(count)"
     }
     

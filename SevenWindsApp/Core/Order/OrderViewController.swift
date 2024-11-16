@@ -19,6 +19,17 @@ class OrderViewController: UIViewController {
     var presenter: OrderPresenterProtocol!
     let configurator = OrderConfigurator()
     
+    private let greetingsLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Время ожидания заказа 15 минут! Спасибо, что выбрали нас!"
+        label.textColor = UIColor.coffeShopsTheme.coffeShopTextColor
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont.systemFont(ofSize: 24)
+        label.textAlignment = .center
+        label.numberOfLines = 3
+        return label
+    }()
+    
     private let orderButton: UIButton =  {
         let button = UIButton()
         button.setTitle("Перейти к оплате", for: .normal)
@@ -103,6 +114,7 @@ class OrderViewController: UIViewController {
                                       orderButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
                                       orderButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
                                       orderButton.heightAnchor.constraint(equalToConstant: 48)]
+
         NSLayoutConstraint.activate(orderButtonConstraints)
     }
 
@@ -119,7 +131,14 @@ extension OrderViewController: OrderViewProtocol {
     }
     
     @objc func orderButtonTapped() {
-        print("order Tapped")
+        view.addSubview(greetingsLabel)
+        let greetingLabelConstraints = [
+            greetingsLabel.bottomAnchor.constraint(equalTo: orderButton.topAnchor, constant: -150),
+            greetingsLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 13),
+            greetingsLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -13),
+            greetingsLabel.heightAnchor.constraint(equalToConstant: 87)
+        ]
+        NSLayoutConstraint.activate(greetingLabelConstraints)
     }
     
     func success() {
