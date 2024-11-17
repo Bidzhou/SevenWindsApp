@@ -1,6 +1,0 @@
-framework module Pods_SevenWindsApp {
-  umbrella header "Pods-SevenWindsApp-umbrella.h"
-
-  export *
-  module * { export * }
-}
