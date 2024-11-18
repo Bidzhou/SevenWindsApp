@@ -27,7 +27,7 @@ class AuthPresenter: AuthPresenterProtocol {
         interactor.networkService.signIn(with: email, and: pass) {[weak self] authResponse in
             switch authResponse {
             
-            case .success(let data):
+            case .success(_):
                 self?.router.jumpToCoffeShops()
             case .failure(let error):
                 print(error.localizedDescription)

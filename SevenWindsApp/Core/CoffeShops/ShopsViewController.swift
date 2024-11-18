@@ -120,7 +120,7 @@ extension ShopsViewController: ShopsViewProtocol {
     @objc func mapButtonTouched() {
         guard currentLocation != nil else {return}
         guard presenter.locations != nil else {return}
-        presenter.showOnMaps(currentLocation: currentLocation!, locations: presenter.locations!)
+        presenter.showOnMaps(currentLocation: currentLocation!, shops: presenter.coffeShops ?? [])
     }
 }
 

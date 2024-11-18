@@ -13,7 +13,7 @@ protocol ShopsPresenterProtocol: AnyObject {
     var locations: [CLLocation]? {get set}
     func getAllCoffeShops()
     func goToTheCoffeShop(_ shop: CoffeShop)
-    func showOnMaps(currentLocation: CLLocation, locations: [CLLocation])
+    func showOnMaps(currentLocation: CLLocation, shops: [CoffeShop])
     func goBack()
     func formatDistance(_ distanceInMeters: Double) -> String
 }
@@ -53,8 +53,8 @@ class ShopsPresenter: ShopsPresenterProtocol {
         router.goToTheCoffeShop(shop)
     }
     
-    func showOnMaps(currentLocation: CLLocation, locations: [CLLocation]) {
-        router.goToMap(currentLocation: currentLocation, locations: locations)
+    func showOnMaps(currentLocation: CLLocation, shops: [CoffeShop]) {
+        router.goToMap(currentLocation: currentLocation, shops: shops)
     }
     
     func goBack() {

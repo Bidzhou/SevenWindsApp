@@ -46,10 +46,9 @@
 		009CFEFD2CDE025000715DA4 /* RegRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009CFEFC2CDE025000715DA4 /* RegRouter.swift */; };
 		009CFEFF2CDE2F6D00715DA4 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009CFEFE2CDE2F6D00715DA4 /* AuthViewController.swift */; };
 		009CFF012CDE5C7B00715DA4 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009CFF002CDE5C7B00715DA4 /* NetworkService.swift */; };
-		00E88CA32CE8A5C4004F57D3 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 00E88CA22CE8A5C4004F57D3 /* Alamofire */; };
-		00E88CA52CE8A5C4004F57D3 /* AlamofireDynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 00E88CA42CE8A5C4004F57D3 /* AlamofireDynamic */; };
 		00E88CA62CE8A676004F57D3 /* Pods_SevenWindsApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 573C23FD406E42C27BB41D6B /* Pods_SevenWindsApp.framework */; };
 		00E88CAC2CE8F714004F57D3 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E88CAB2CE8F714004F57D3 /* MapViewController.swift */; };
+		00E88CB52CEA47BC004F57D3 /* CoffeIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E88CB42CEA47BC004F57D3 /* CoffeIconView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -95,6 +94,7 @@
 		009CFEFE2CDE2F6D00715DA4 /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		009CFF002CDE5C7B00715DA4 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		00E88CAB2CE8F714004F57D3 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		00E88CB42CEA47BC004F57D3 /* CoffeIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoffeIconView.swift; sourceTree = "<group>"; };
 		41924627ADFA724D28375C47 /* Pods-SevenWindsApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SevenWindsApp.debug.xcconfig"; path = "Target Support Files/Pods-SevenWindsApp/Pods-SevenWindsApp.debug.xcconfig"; sourceTree = "<group>"; };
 		5531B2C8159FF5C9E79F9692 /* Pods-SevenWindsApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SevenWindsApp.release.xcconfig"; path = "Target Support Files/Pods-SevenWindsApp/Pods-SevenWindsApp.release.xcconfig"; sourceTree = "<group>"; };
 		573C23FD406E42C27BB41D6B /* Pods_SevenWindsApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SevenWindsApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -105,9 +105,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				00E88CA52CE8A5C4004F57D3 /* AlamofireDynamic in Frameworks */,
 				00E88CA62CE8A676004F57D3 /* Pods_SevenWindsApp.framework in Frameworks */,
-				00E88CA32CE8A5C4004F57D3 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -288,6 +286,7 @@
 			isa = PBXGroup;
 			children = (
 				00E88CAB2CE8F714004F57D3 /* MapViewController.swift */,
+				00E88CB42CEA47BC004F57D3 /* CoffeIconView.swift */,
 			);
 			path = MapModule;
 			sourceTree = "<group>";
@@ -321,6 +320,7 @@
 				009CFECC2CDCD3C900715DA4 /* Frameworks */,
 				009CFECD2CDCD3C900715DA4 /* Resources */,
 				474AFADE9ECD158C1028C8B7 /* [CP] Copy Pods Resources */,
+				75C0BA6803C208CCF6B1983D /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -328,8 +328,6 @@
 			);
 			name = SevenWindsApp;
 			packageProductDependencies = (
-				00E88CA22CE8A5C4004F57D3 /* Alamofire */,
-				00E88CA42CE8A5C4004F57D3 /* AlamofireDynamic */,
 			);
 			productName = SevenWindsApp;
 			productReference = 009CFECF2CDCD3C900715DA4 /* SevenWindsApp.app */;
@@ -360,7 +358,6 @@
 			);
 			mainGroup = 009CFEC62CDCD3C900715DA4;
 			packageReferences = (
-				00E88CA12CE8A5C4004F57D3 /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = 009CFED02CDCD3C900715DA4 /* Products */;
 			projectDirPath = "";
@@ -401,6 +398,23 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SevenWindsApp/Pods-SevenWindsApp-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		75C0BA6803C208CCF6B1983D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SevenWindsApp/Pods-SevenWindsApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SevenWindsApp/Pods-SevenWindsApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SevenWindsApp/Pods-SevenWindsApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		903DB4EC939F44E19993D9E0 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -438,6 +452,7 @@
 				009CFEEF2CDCE4D300715DA4 /* AuthRouter.swift in Sources */,
 				009CFEF92CDDFA5800715DA4 /* RegPresenter.swift in Sources */,
 				00E88CAC2CE8F714004F57D3 /* MapViewController.swift in Sources */,
+				00E88CB52CEA47BC004F57D3 /* CoffeIconView.swift in Sources */,
 				009CFEE92CDCE39500715DA4 /* AuthPresenter.swift in Sources */,
 				0002044A2CE5C07100AE6E18 /* OrderPresenter.swift in Sources */,
 				007F71012CE23A41006416C5 /* MenuInteractor.swift in Sources */,
@@ -690,30 +705,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		00E88CA12CE8A5C4004F57D3 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.10.1;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		00E88CA22CE8A5C4004F57D3 /* Alamofire */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 00E88CA12CE8A5C4004F57D3 /* XCRemoteSwiftPackageReference "Alamofire" */;
-			productName = Alamofire;
-		};
-		00E88CA42CE8A5C4004F57D3 /* AlamofireDynamic */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 00E88CA12CE8A5C4004F57D3 /* XCRemoteSwiftPackageReference "Alamofire" */;
-			productName = AlamofireDynamic;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 009CFEC72CDCD3C900715DA4 /* Project object */;
 }

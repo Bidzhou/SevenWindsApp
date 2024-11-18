@@ -11,7 +11,7 @@ import CoreLocation
 protocol ShopsRouterProtocol: AnyObject {
     func goBack()
     func goToTheCoffeShop(_ shop: CoffeShop)
-    func goToMap(currentLocation: CLLocation, locations: [CLLocation])
+    func goToMap(currentLocation: CLLocation, shops: [CoffeShop])
 }
 
 class ShopsRouter: ShopsRouterProtocol {
@@ -31,9 +31,9 @@ class ShopsRouter: ShopsRouterProtocol {
         vc.navigationController?.pushViewController(MenuViewController(shop: shop), animated: true)
     }
     
-    func goToMap(currentLocation: CLLocation, locations: [CLLocation]) {
+    func goToMap(currentLocation: CLLocation, shops: [CoffeShop]) {
         guard let vc = view as? UIViewController else {return}
-        vc.navigationController?.pushViewController(MapViewController(currentLocation: currentLocation, locations: locations), animated: true)
+        vc.navigationController?.pushViewController(MapViewController(currentLocation: currentLocation, shops: shops), animated: true)
     }
     
     
