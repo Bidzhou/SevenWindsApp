@@ -89,7 +89,7 @@ class MenuViewController: UIViewController {
         appearance.titleTextAttributes = [.foregroundColor: UIColor.authTheme.labelText]
         navigationController?.navigationBar.standardAppearance = appearance
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
-        navigationItem.title = "Ближайшие кофейни"
+        navigationItem.title = "Меню"
         
         let backButton = UIBarButtonItem(
             image: UIImage(systemName: "chevron.backward"),
