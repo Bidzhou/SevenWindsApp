@@ -48,7 +48,10 @@
 		009CFF012CDE5C7B00715DA4 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009CFF002CDE5C7B00715DA4 /* NetworkService.swift */; };
 		00E88CA62CE8A676004F57D3 /* Pods_SevenWindsApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 573C23FD406E42C27BB41D6B /* Pods_SevenWindsApp.framework */; };
 		00E88CAC2CE8F714004F57D3 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E88CAB2CE8F714004F57D3 /* MapViewController.swift */; };
-		00E88CB52CEA47BC004F57D3 /* CoffeIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E88CB42CEA47BC004F57D3 /* CoffeIconView.swift */; };
+		00E88CB72CEBAA49004F57D3 /* MapPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E88CB62CEBAA49004F57D3 /* MapPresenter.swift */; };
+		00E88CB92CEBAA50004F57D3 /* MapInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E88CB82CEBAA50004F57D3 /* MapInteractor.swift */; };
+		00E88CBB2CEBAA5A004F57D3 /* MapConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E88CBA2CEBAA5A004F57D3 /* MapConfigurator.swift */; };
+		00E88CBF2CEBAA71004F57D3 /* MapRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E88CBE2CEBAA71004F57D3 /* MapRouter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -94,7 +97,10 @@
 		009CFEFE2CDE2F6D00715DA4 /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		009CFF002CDE5C7B00715DA4 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		00E88CAB2CE8F714004F57D3 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
-		00E88CB42CEA47BC004F57D3 /* CoffeIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoffeIconView.swift; sourceTree = "<group>"; };
+		00E88CB62CEBAA49004F57D3 /* MapPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapPresenter.swift; sourceTree = "<group>"; };
+		00E88CB82CEBAA50004F57D3 /* MapInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapInteractor.swift; sourceTree = "<group>"; };
+		00E88CBA2CEBAA5A004F57D3 /* MapConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapConfigurator.swift; sourceTree = "<group>"; };
+		00E88CBE2CEBAA71004F57D3 /* MapRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapRouter.swift; sourceTree = "<group>"; };
 		41924627ADFA724D28375C47 /* Pods-SevenWindsApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SevenWindsApp.debug.xcconfig"; path = "Target Support Files/Pods-SevenWindsApp/Pods-SevenWindsApp.debug.xcconfig"; sourceTree = "<group>"; };
 		5531B2C8159FF5C9E79F9692 /* Pods-SevenWindsApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SevenWindsApp.release.xcconfig"; path = "Target Support Files/Pods-SevenWindsApp/Pods-SevenWindsApp.release.xcconfig"; sourceTree = "<group>"; };
 		573C23FD406E42C27BB41D6B /* Pods_SevenWindsApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SevenWindsApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -286,7 +292,10 @@
 			isa = PBXGroup;
 			children = (
 				00E88CAB2CE8F714004F57D3 /* MapViewController.swift */,
-				00E88CB42CEA47BC004F57D3 /* CoffeIconView.swift */,
+				00E88CB62CEBAA49004F57D3 /* MapPresenter.swift */,
+				00E88CB82CEBAA50004F57D3 /* MapInteractor.swift */,
+				00E88CBA2CEBAA5A004F57D3 /* MapConfigurator.swift */,
+				00E88CBE2CEBAA71004F57D3 /* MapRouter.swift */,
 			);
 			path = MapModule;
 			sourceTree = "<group>";
@@ -446,15 +455,16 @@
 			files = (
 				007F70F12CE06B00006416C5 /* CoffeShop.swift in Sources */,
 				007F70E42CDF5F37006416C5 /* ShopsInteractor.swift in Sources */,
+				00E88CB72CEBAA49004F57D3 /* MapPresenter.swift in Sources */,
 				007F71032CE23A4B006416C5 /* MenuConfigurator.swift in Sources */,
 				009CFEFD2CDE025000715DA4 /* RegRouter.swift in Sources */,
 				007F70ED2CE04F2B006416C5 /* ShopsViewController.swift in Sources */,
 				009CFEEF2CDCE4D300715DA4 /* AuthRouter.swift in Sources */,
 				009CFEF92CDDFA5800715DA4 /* RegPresenter.swift in Sources */,
 				00E88CAC2CE8F714004F57D3 /* MapViewController.swift in Sources */,
-				00E88CB52CEA47BC004F57D3 /* CoffeIconView.swift in Sources */,
 				009CFEE92CDCE39500715DA4 /* AuthPresenter.swift in Sources */,
 				0002044A2CE5C07100AE6E18 /* OrderPresenter.swift in Sources */,
+				00E88CBF2CEBAA71004F57D3 /* MapRouter.swift in Sources */,
 				007F71012CE23A41006416C5 /* MenuInteractor.swift in Sources */,
 				007F70F62CE1F2A3006416C5 /* Position.swift in Sources */,
 				007F70F42CE1F262006416C5 /* MenuViewController.swift in Sources */,
@@ -467,6 +477,7 @@
 				009CFEF42CDDF8C300715DA4 /* CGColor.swift in Sources */,
 				009CFEEB2CDCE3C200715DA4 /* AuthInteractor.swift in Sources */,
 				007F70E02CDF5F0A006416C5 /* ShopsConfigurator.swift in Sources */,
+				00E88CB92CEBAA50004F57D3 /* MapInteractor.swift in Sources */,
 				009CFED32CDCD3C900715DA4 /* AppDelegate.swift in Sources */,
 				007F70FF2CE23A32006416C5 /* MenuPresenter.swift in Sources */,
 				007F70F82CE1F365006416C5 /* MenuCollectionViewCell.swift in Sources */,
@@ -478,6 +489,7 @@
 				009CFEE72CDCE38200715DA4 /* AuthConfigurator.swift in Sources */,
 				000204472CE4FF1200AE6E18 /* OrderCollectionViewCell.swift in Sources */,
 				0002044E2CE5C08700AE6E18 /* OrderConfigurator.swift in Sources */,
+				00E88CBB2CEBAA5A004F57D3 /* MapConfigurator.swift in Sources */,
 				0053EC392CE898D4003A3AA4 /* Config.swift in Sources */,
 				009CFED52CDCD3C900715DA4 /* SceneDelegate.swift in Sources */,
 				007F70EF2CE0509F006416C5 /* ShopsCollectionViewCell.swift in Sources */,
@@ -630,10 +642,12 @@
 				DEVELOPMENT_TEAM = 538986FBKH;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SevenWindsApp/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Разрешите использовать вашу геолокацию";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Разрешите использовать вашу гоелокацию во время использования приложения";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -662,10 +676,12 @@
 				DEVELOPMENT_TEAM = 538986FBKH;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SevenWindsApp/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Разрешите использовать вашу геолокацию";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Разрешите использовать вашу гоелокацию во время использования приложения";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

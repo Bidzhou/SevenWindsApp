@@ -9,13 +9,16 @@ import UIKit
 import CoreLocation
 import YandexMapsMobile
 
-
+protocol MapViewProtocol: AnyObject {
+    func createCustomImage(with text: String) -> UIImage
+}
 
 class MapViewController: UIViewController {
     private var shops: [CoffeShop]? = nil
     private var currentLocation: CLLocation? = nil
     
-    
+    var presenter: MapPresenterProtocol!
+    private let configurator = MapConfigurator()
 
     let mapView: YMKMapView = {
         let map = YMKMapView(frame: .zero, vulkanPreferred: true)
@@ -24,7 +27,7 @@ class MapViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        configurator.configure(with: self)
         view.addSubview(mapView)
         zoomToFirst()
         addPlacemarks()
@@ -51,10 +54,9 @@ class MapViewController: UIViewController {
     
     private func zoomToFirst() {
         guard shops != nil else {return}
-        guard let latitude = Double(shops?.first?.point.latitude ?? "") else {return}
-        guard let longitude = Double(shops?.first?.point.longitude ?? "") else {return}
-        let location = CLLocation(latitude: latitude, longitude: longitude)
-        
+        guard currentLocation != nil else {return}
+        guard let location = presenter.getClosestShop(location: currentLocation!, shops: shops!) else {return}
+         
         mapView.mapWindow.map.move(
             with: YMKCameraPosition(
                 target: YMKPoint(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude),
@@ -69,7 +71,6 @@ class MapViewController: UIViewController {
     
     
     private func addPlacemarks() {
-        NotificationCenter.default.addObserver(self, selector: #selector(goToCoffeShop(_:)), name: Notification.Name("coffeShopSelected"), object: nil)
         guard shops != nil else {return}
         for shop in shops! {
             guard let latitude = Double(shop.point.latitude) else {continue}
@@ -85,18 +86,6 @@ class MapViewController: UIViewController {
 
     }
     
-    @objc func goToCoffeShop(_ notification: NSNotification){
-
-        if let point = notification.userInfo?["point"] as? YMKPoint {
-            print(point)
-            for shop in shops! {
-                if shop.point.latitude == "\(point.latitude)" && shop.point.longitude == "\(point.longitude)" {
-                    print("2")
-                    navigationController?.pushViewController(MenuViewController(shop: shop), animated: true)
-                }
-            }
-        }
-    }
 
     
     private func setNavBar() {
@@ -120,7 +109,19 @@ class MapViewController: UIViewController {
     }
 
     
-    private func createCustomImage(with text: String) -> UIImage {
+    
+
+
+    @objc private func backButtonTapped() {
+        presenter.goBack()
+    }
+}
+
+
+
+extension MapViewController: MapViewProtocol{
+    //icon
+     func createCustomImage(with text: String) -> UIImage {
        
         let circleDiameter: CGFloat = 58
         let textWidth: CGFloat = 90
@@ -179,16 +180,7 @@ class MapViewController: UIViewController {
             text.draw(in: textRect, withAttributes: attributes)
         }
     }
-
-
-    @objc private func backButtonTapped() {
-        navigationController?.popViewController(animated: true)
-    }
 }
-
-
-
-
 
 //MapObjectTapListener
 extension MapViewController: YMKMapObjectTapListener {
@@ -199,7 +191,7 @@ extension MapViewController: YMKMapObjectTapListener {
         print(mapObject.description)
         if let placemark = mapObject as? YMKPlacemarkMapObject,
            let shop = placemark.userData as? CoffeShop {
-            navigationController?.pushViewController(MenuViewController(shop: shop), animated: true)
+            presenter.goToCoffeShop(shop: shop)
         }
         return true
     }
