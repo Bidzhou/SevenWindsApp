@@ -28,6 +28,7 @@ class MapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configurator.configure(with: self)
+        setNavBar()
         view.addSubview(mapView)
         zoomToFirst()
         addPlacemarks()
@@ -47,8 +48,6 @@ class MapViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        
-        setNavBar()
         mapView.frame = view.bounds
     }
     
