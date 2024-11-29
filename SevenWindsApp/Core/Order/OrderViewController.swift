@@ -32,7 +32,7 @@ class OrderViewController: UIViewController {
     
     private let orderButton: UIButton =  {
         let button = UIButton()
-        button.setTitle("Перейти к оплате", for: .normal)
+        button.setTitle("Оплатить", for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize:18)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitleColor(UIColor.authTheme.buttonText, for: .normal)

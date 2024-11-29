@@ -10,6 +10,7 @@ import UIKit
 protocol RegViewProtocol: AnyObject {
     func createObservers()
     func regButtonTouched()
+    func addButtonTargets()
 }
 
 
@@ -56,7 +57,6 @@ class RegViewController: UIViewController {
         button.layer.borderColor = CGColor.authTheme.buttonBorder
         button.layer.borderWidth = 1
         button.layer.cornerRadius = 24.5
-        button.addTarget(self, action: #selector(regButtonTouched), for: .touchUpInside)
         return button
     }()
     
@@ -144,6 +144,7 @@ class RegViewController: UIViewController {
         createObservers()
         displayViews()
         createConstraints()
+        addButtonTargets()
         setNavBar()
         
         
@@ -245,6 +246,7 @@ class RegViewController: UIViewController {
         NSLayoutConstraint.activate(rePassLabelConstraints)
         NSLayoutConstraint.activate(regButtonConstraints)
     }
+    
 
 }
 
@@ -277,13 +279,33 @@ extension RegViewController: RegViewProtocol {
             self.view.frame.origin.y = 0
         }
     }
+    func createPushAnimation(button: UIButton){
+        UIView.animate(withDuration: 0.1, animations: {button.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)})
+    }
+    
+    func createUnpushAnimation(button: UIButton) {
+        UIView.animate(withDuration: 0.1, animations: {button.transform = .identity})
+    }
+    
+    func addButtonTargets() {
+        regButton.addTarget(self, action: #selector(regButtonTouched), for: .touchUpInside)
+        regButton.addTarget(self, action: #selector(regButtonTouchDown), for: .touchDown)
+        regButton.addTarget(self, action: #selector(regButtonTouchUpOut), for: .touchUpOutside)
+    }
 
     
     @objc func regButtonTouched(){
-        
+        createUnpushAnimation(button: regButton)
         presenter.regButtonClicked(email: emailTextField.text ?? "", pass: passTextField.text ?? "" , rePass: rePassTextField.text ?? "")
 
     }
     
+    @objc func regButtonTouchDown() {
+        createPushAnimation(button: regButton)
+    }
+    
+    @objc func regButtonTouchUpOut() {
+        createUnpushAnimation(button: regButton)
+    }
     
 }

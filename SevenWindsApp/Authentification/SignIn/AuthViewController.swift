@@ -10,6 +10,8 @@ import UIKit
 protocol AuthViewProtocol: AnyObject {
     func createObservers()
     func authButtonTouched()
+    func addButtonTargets()
+    func touchUpOut()
 }
 
 class AuthViewController: UIViewController {
@@ -28,7 +30,7 @@ class AuthViewController: UIViewController {
         button.layer.borderColor = CGColor.authTheme.buttonBorder
         button.layer.borderWidth = 1
         button.layer.cornerRadius = 24.5
-        button.addTarget(self, action: #selector(authButtonTouched), for: .touchUpInside)
+
         return button
     }()
     
@@ -99,7 +101,7 @@ class AuthViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configurator.configure(with: self)
-        
+        addButtonTargets()
         emailTextField.delegate = self
         passTextField.delegate = self
         view.backgroundColor = .systemBackground
@@ -109,6 +111,8 @@ class AuthViewController: UIViewController {
         createConstraints()
         
     }
+    
+
 
     //MARK: - Methods
     private func setNavBar(){
@@ -189,6 +193,20 @@ class AuthViewController: UIViewController {
         NSLayoutConstraint.activate(passLabelConstraints)
         NSLayoutConstraint.activate(loginButtonConstraints)
     }
+    
+    private func createPushAuthButtonAnimation(button: UIButton){
+        UIView.animate(withDuration: 0.1,
+                       animations: {
+                           button.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
+                       })
+        
+    }
+    private func createUnpushAuthButtonAnimation(button: UIButton) {
+
+        UIView.animate(withDuration: 0.1, animations: {button.transform = .identity})
+        
+    
+    }
 
 }
 
@@ -205,6 +223,12 @@ extension AuthViewController: UITextFieldDelegate {
 }
 
 extension AuthViewController: AuthViewProtocol {
+    func addButtonTargets() {
+       loginButton.addTarget(self, action: #selector(authButtonTouched), for: .touchUpInside)
+       loginButton.addTarget(self, action: #selector(touchUpOut), for: .touchUpOutside)
+       loginButton.addTarget(self, action: #selector(authButtonTouchDown), for: .touchDown)
+   }
+    
     func createObservers() {
         NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillShowNotification, object: nil, queue: nil) { nc in
             self.view.frame.origin.y = -120
@@ -216,6 +240,7 @@ extension AuthViewController: AuthViewProtocol {
     }
     
     @objc func authButtonTouched() {
+        createUnpushAuthButtonAnimation(button: loginButton)
         guard let email = emailTextField.text, let pass = passTextField.text else {return}
         presenter.enterButtonClicked(email: email, pass: pass)
         loginButton.isEnabled = false
@@ -223,5 +248,12 @@ extension AuthViewController: AuthViewProtocol {
         loginButton.isEnabled = true
     }
     
+    @objc func authButtonTouchDown() {
+        createPushAuthButtonAnimation(button: loginButton)
+    }
+    
+    @objc func touchUpOut() {
+        createUnpushAuthButtonAnimation(button: loginButton)
+    }
     
 }

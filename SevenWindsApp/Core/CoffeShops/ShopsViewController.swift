@@ -12,6 +12,11 @@ protocol ShopsViewProtocol: AnyObject {
     func backButtonTapped()
     func mapButtonTouched()
     func successDownloadingData()
+    func addButtonTargets()
+    func mapButtonTouchUpInside()
+    func mapButtonTouchDown()
+    func buttonUnpushAnimation(button: UIButton)
+    func buttonPushAnimation(button: UIButton)
 }
 
 
@@ -31,7 +36,6 @@ class ShopsViewController: UIViewController {
         button.layer.borderColor = CGColor.authTheme.buttonBorder
         button.layer.borderWidth = 1
         button.layer.cornerRadius = 24.5
-        button.addTarget(self, action: #selector(mapButtonTouched), for: .touchUpInside)
         return button
     }()
     
@@ -55,6 +59,7 @@ class ShopsViewController: UIViewController {
         setNavBar()
         setLocationService()
         configurator.configure(with: self)
+        addButtonTargets()
         
     }
     
@@ -109,6 +114,20 @@ class ShopsViewController: UIViewController {
 }
 
 extension ShopsViewController: ShopsViewProtocol {
+    func addButtonTargets() {
+        mapButton.addTarget(self, action: #selector(mapButtonTouched), for: .touchUpInside)
+        mapButton.addTarget(self, action: #selector(mapButtonTouchDown), for: .touchDown)
+        mapButton.addTarget(self, action: #selector(mapButtonTouchUpInside), for: .touchUpOutside)
+    }
+    
+    func buttonPushAnimation(button: UIButton){
+        UIView.animate(withDuration: 0.1, animations: {button.transform = CGAffineTransform(scaleX: 0.9, y: 0.9 )})
+    }
+    
+    func buttonUnpushAnimation(button: UIButton) {
+        UIView.animate(withDuration: 0.1, animations: {button.transform = .identity})
+    }
+    
     func successDownloadingData() {
         coffeShops.reloadData()
     }
@@ -118,9 +137,18 @@ extension ShopsViewController: ShopsViewProtocol {
     }
     
     @objc func mapButtonTouched() {
+        buttonUnpushAnimation(button: mapButton)
         guard currentLocation != nil else {return}
         guard presenter.locations != nil else {return}
         presenter.showOnMaps(currentLocation: currentLocation!, shops: presenter.coffeShops ?? [])
+    }
+    
+    @objc func mapButtonTouchDown() {
+        buttonPushAnimation(button: mapButton)
+    }
+    
+    @objc func mapButtonTouchUpInside(){
+        buttonUnpushAnimation(button: mapButton)
     }
 }
 

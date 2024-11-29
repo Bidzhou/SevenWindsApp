@@ -10,6 +10,12 @@ protocol MenuViewProtocol: AnyObject {
     var shop: CoffeShop? {get set}
     func success()
     func payButtonTapped()
+    
+    func addButtonTargets()
+    func buttonPushAnimation(button: UIButton)
+    func buttonUnpushAnimation(button: UIButton)
+    func payButtonTouchDown()
+    func payButtonTouchUpOut()
 }
 
 
@@ -28,7 +34,6 @@ class MenuViewController: UIViewController {
         button.layer.borderColor = CGColor.authTheme.buttonBorder
         button.layer.borderWidth = 1
         button.layer.cornerRadius = 24.5
-        button.addTarget(self, action: #selector(payButtonTapped), for: .touchUpInside)
         return button
     }()
     
@@ -58,7 +63,7 @@ class MenuViewController: UIViewController {
         menu.dataSource = self
         menu.delegate = self
         NotificationCenter.default.addObserver(self, selector: #selector(updatePositions(_:)), name: NSNotification.Name("OrderUpdated"), object: nil)
-
+        addButtonTargets()
         view.addSubview(menu)
         view.addSubview(payButton)
         createConstraints()
@@ -120,17 +125,35 @@ class MenuViewController: UIViewController {
 }
 
 extension MenuViewController: MenuViewProtocol {
+    func addButtonTargets() {
+        payButton.addTarget(self, action: #selector(payButtonTapped), for: .touchUpInside)
+        payButton.addTarget(self, action: #selector(payButtonTouchDown), for: .touchDown)
+        payButton.addTarget(self, action: #selector(payButtonTouchUpOut), for: .touchUpOutside)
+    }
+    
+    func buttonPushAnimation(button: UIButton) {
+        UIView.animate(withDuration: 0.1, animations: {button.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)})
+    }
+    
+    func buttonUnpushAnimation(button: UIButton) {
+        UIView.animate(withDuration: 0.1, animations: {button.transform = .identity})
+    }
+    
+    @objc func payButtonTouchDown() {
+        buttonPushAnimation(button: payButton)
+    }
+    
+    @objc func payButtonTouchUpOut() {
+        buttonUnpushAnimation(button: payButton)
+    }
+    
     @objc func payButtonTapped() {
+        buttonUnpushAnimation(button: payButton)
         presenter.goPay()
     }
     
-    
-    
-    
     func success() {
-        
         menu.reloadData()
-        
     }
 }
 
