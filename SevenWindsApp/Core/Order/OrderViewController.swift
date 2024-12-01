@@ -40,7 +40,6 @@ class OrderViewController: UIViewController {
         button.layer.borderColor = CGColor.authTheme.buttonBorder
         button.layer.borderWidth = 1
         button.layer.cornerRadius = 24.5
-        button.addTarget(self, action: #selector(orderButtonTapped), for: .touchUpInside)
         return button
     }()
 
@@ -61,7 +60,7 @@ class OrderViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+//MARK: - ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         order.delegate = self
@@ -70,7 +69,7 @@ class OrderViewController: UIViewController {
         view.addSubview(orderButton)
         configure()
         createConstraints()
-        
+        addButtonTargets()
         setNavBar()
         
     }
@@ -88,6 +87,11 @@ class OrderViewController: UIViewController {
         
         success()
         
+    }
+    private func addButtonTargets() {
+        orderButton.addTarget(self, action: #selector(orderButtonTapped), for: .touchUpInside)
+        orderButton.addTarget(self, action: #selector(orderButtonTouchUpOut), for: .touchUpOutside)
+        orderButton.addTarget(self, action: #selector(orderButtonTouchDown), for: .touchDown)
     }
     
     private func setNavBar() {
@@ -132,6 +136,7 @@ extension OrderViewController: OrderViewProtocol {
     
     @objc func orderButtonTapped() {
         view.addSubview(greetingsLabel)
+        buttonUnpushAnimation(button: orderButton)
         let greetingLabelConstraints = [
             greetingsLabel.bottomAnchor.constraint(equalTo: orderButton.topAnchor, constant: -150),
             greetingsLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 13),
@@ -140,6 +145,24 @@ extension OrderViewController: OrderViewProtocol {
         ]
         NSLayoutConstraint.activate(greetingLabelConstraints)
     }
+    
+    @objc func orderButtonTouchDown(){
+        buttonPushAnimation(button: orderButton)
+    }
+    
+    @objc func orderButtonTouchUpOut() {
+        buttonUnpushAnimation(button: orderButton)
+    }
+    
+    private func buttonPushAnimation(button: UIButton) {
+        UIView.animate(withDuration: 0.1, animations: {button.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)})
+    }
+    
+    private func buttonUnpushAnimation(button: UIButton) {
+        UIView.animate(withDuration: 0.1, animations: {button.transform = .identity})
+    }
+    
+    
     
     func success() {
         order.reloadData()

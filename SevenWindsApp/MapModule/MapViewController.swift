@@ -187,10 +187,11 @@ extension MapViewController: YMKMapObjectTapListener {
 
     func onMapObjectTap(with mapObject: YMKMapObject, point: YMKPoint) -> Bool 
     {
-        print(mapObject.description)
+        //print(mapObject.description)
         if let placemark = mapObject as? YMKPlacemarkMapObject,
-           let shop = placemark.userData as? CoffeShop {
+            let shop = placemark.userData as? CoffeShop {
             presenter.goToCoffeShop(shop: shop)
+            
         }
         return true
     }
