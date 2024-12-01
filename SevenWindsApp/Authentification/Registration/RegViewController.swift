@@ -247,6 +247,13 @@ class RegViewController: UIViewController {
         NSLayoutConstraint.activate(regButtonConstraints)
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1, qos: .background) { [weak self] in
+            self?.passTextField.text = ""
+            self?.rePassTextField.text = ""
+        }
+    }
+    
 
 }
 

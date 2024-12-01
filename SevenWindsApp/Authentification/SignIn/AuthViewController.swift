@@ -207,6 +207,12 @@ class AuthViewController: UIViewController {
         
     
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1, qos: .background) { [weak self] in
+            self?.passTextField.text = ""
+        }
+    }
 
 }
 
@@ -243,9 +249,7 @@ extension AuthViewController: AuthViewProtocol {
         createUnpushAuthButtonAnimation(button: loginButton)
         guard let email = emailTextField.text, let pass = passTextField.text else {return}
         presenter.enterButtonClicked(email: email, pass: pass)
-        loginButton.isEnabled = false
-        passTextField.text = ""
-        loginButton.isEnabled = true
+
     }
     
     @objc func authButtonTouchDown() {
